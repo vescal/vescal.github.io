@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="robots" content="index,follow">
+    <title>Mi Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Helvetica';
+            src: url('https://github.com/vescal/victorlopezescalonilla.github.io/blob/Fonts/helvetica-bold.woff') format('woff'),
+                 url('https://github.com/vescal/victorlopezescalonilla.github.io/blob/Fonts/helvetica.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Helvetica', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            cursor: crosshair;
+            background-color: #aaaaaa; /* Color de fondo claro */
+        }
+
+        /* Mantener el cursor como cruz en enlaces y botones */
+        a, button {
+            cursor: crosshair !important;
+        }
+
+        /* Redes sociales */
+        .social-links {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 15px;
+            z-index: 20; /* Se asegura de que esté visible por encima de todo */
+        }
+
+        .social-links a {
+            font-size: 24px;
+            color: #000000;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #b00000;
+        }
+
+        /* Encabezado */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%; /* Ancho completo */
+            background-color: rgba(255, 255, 255, 0); /* Fondo transparente */
+            color: #000000; /* Color del texto */
+            padding: 30px 30px; /* Superior/Inferior: 100px, Izquierda/Derecha: 0px */
+            text-align: left; /* Centra el texto horizontalmente */
+            z-index: 10; /* Asegura que esté encima de otros elementos */
+            cursor: crosshair !important;
+        }
+
+        header h1, header p {
+            margin: 0;
+            cursor: crosshair; /* Asegurar que los elementos internos también usen cruz */
+            font-size: 4rem;  /* Tamaño del texto */
+            font-weight: 800; /* Grosor más grueso */
+        }
+        
+
+        /* Enlace del encabezado que redirige a YouTube */
+        header a {
+            text-decoration: none; /* Elimina el subrayado del enlace */
+            color: inherit; /* Mantiene el color del texto */
+        }
+
+        /* Ajustes para el contenido del cuerpo */
+        main {
+            margin-top: calc(100px + 30px); /* Altura del header + espacio adicional */
+        }
+
+        main p {
+            margin: 0;
+            cursor: crosshair; /* Asegurar que los elementos internos también usen cruz */
+            font-size: 3 rem;  /* Tamaño del texto */
+            font-weight: 500; /* Grosor más grueso */
+            padding: 30px 30px; /* Superior/Inferior: 100px, Izquierda/Derecha: 0px */
+        }
+
+        /* Contenedor de imágenes */
+        .images-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajusta columnas automáticamente */
+            gap: 20px;
+            margin: 10px auto;
+            max-width: 1500px;
+            padding: 30px;
+        }
+
+        .image-item {
+            position: relative;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Diseño adaptable */
+        @media (max-width: 768px) {
+            .images-container {
+                grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .images-container {
+                grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+            }
+        }
+
+        /* Elementos del proyecto */
+        .project-item {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            aspect-ratio: 1 / 1; /* Hace que cada elemento sea cuadrado */
+            position: relative;
+            overflow: hidden;
+
+            opacity: 0; /* Inicialmente invisible */
+            transform: translateY(30px); /* Inicia desplazado hacia abajo */
+            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
+        }
+
+        /* Cuando el proyecto entra en la vista (se hace visible) */
+        .project-item.visible {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a la posición original */
+        }
+
+        .project-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .project-item:hover .overlay {
+            opacity: 1;
+        }
+
+        /* Diseño adaptable */
+        @media (max-width: 768px) {
+            .projects-container {
+                grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects-container {
+                grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Redes sociales -->
+    <div class="social-links">
+        <a href="https://www.instagram.com/TU_USUARIO" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.twitter.com/TU_USUARIO" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/TU_USUARIO" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/TU_USUARIO" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-user"></i>
+        </a>
+    </div>
+
+    <!-- Encabezado -->
+    <header>
+        <a href="https://www.youtube.com" target="_blank">
+            <h1>escaladegris.</h1>
+        </a>
+        <p></p>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <p>Descripción del proyecto</p>
+        <section>
+            <div class="images-container">
+                <!-- Imagen 1 -->
+                <div class="image-item">
+                    <img src="URL_DE_LA_IMAGEN1" alt="Descripción de la imagen 1">
+                </div>
+
+                <!-- Imagen 2 -->
+                <div class="image-item">
+                    <img src="URL_DE_LA_IMAGEN2" alt="Descripción de la imagen 2">
+                </div>
+
+                <!-- Imagen 3 -->
+                <div class="image-item">
+                    <img src="URL_DE_LA_IMAGEN3" alt="Descripción de la imagen 3">
+                </div>
+
+                <!-- Imagen 4 -->
+                <div class="image-item">
+                    <img src="URL_DE_LA_IMAGEN4" alt="Descripción de la imagen 4">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p></p>
+    </footer>
+
+    <script>
+        // Esperamos a que la página cargue completamente
+        document.addEventListener('DOMContentLoaded', function() {
+            // Definimos las opciones del Intersection Observer
+            const observerOptions = {
+                root: null, // Usamos el viewport como referencia
+                rootMargin: '0px', // Sin margen adicional
+                threshold: 0.3 // El 50% del elemento debe estar visible para activar la animación
+            };
+
+            // Creamos una función callback que se ejecutará cuando los proyectos entren en el viewport
+            const fadeInProjects = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Si el proyecto entra en la vista, le agregamos la clase 'visible'
+                        entry.target.classList.add('visible');
+                    } else {
+                        // Si el proyecto sale de la vista, lo ocultamos de nuevo para el siguiente scroll
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            };
+
+            // Creamos el observer y le pasamos la función de callback y las opciones
+            const observer = new IntersectionObserver(fadeInProjects, observerOptions);
+
+            // Obtenemos todos los proyectos y comenzamos a observarlos
+            const projects = document.querySelectorAll('.project-item');
+            projects.forEach(project => {
+                observer.observe(project);
+            });
+        });
+    </script>
+</body>
+</html>
