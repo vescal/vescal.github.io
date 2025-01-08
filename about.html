@@ -79,6 +79,7 @@
             padding: 20px;
         }
 
+        /* Contenedor principal de la biografía e imagen */
         .about-container {
             display: flex;
             align-items: center;
@@ -88,18 +89,70 @@
             margin: 0 auto;
         }
 
+        /* Imagen de perfil ajustable */
         .about-container img {
             width: 300px; /* Tamaño de la imagen */
             height: 300px;
             object-fit: cover;
-            border-radius: 0%; /* Hace la imagen redonda */
+            border-radius: 0%; /* Hace la imagen cuadrada */
+            margin-top: 20px; /* Puedes ajustar este valor para mover la imagen hacia abajo */
+            margin-left: 30px; /* Puedes ajustar este valor para mover la imagen hacia la derecha */
+            margin-right: 30px; /* Espacio a la derecha de la imagen */
+            margin-bottom: 20px; /* Ajusta la posición hacia abajo */
         }
 
+        /* Biografía */
         .bio-text {
             font-size: 1.2rem;
             line-height: 1.6;
             color: #333;
             max-width: 800px;
+        }
+
+        /* Contenedor de imágenes en tres columnas */
+        .images-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+            gap: 20px;
+            margin-top: 40px; /* Espacio entre la bio y las imágenes */
+        }
+
+        .image-item {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Diseño adaptable para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-container img {
+                margin-top: 10px;
+                width: 250px;
+                height: 250px;
+            }
+
+            .images-container {
+                grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .images-container {
+                grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+            }
         }
     </style>
 </head>
@@ -143,6 +196,19 @@
                 <p>
                     Mi objetivo es seguir aprendiendo, creciendo y aportando al mundo del diseño arquitectónico, manteniendo siempre un enfoque ético y sostenible en mi trabajo.
                 </p>
+            </div>
+        </section>
+
+        <!-- Contenedor de imágenes -->
+        <section class="images-container">
+            <div class="image-item">
+                <img src="https://via.placeholder.com/300" alt="Imagen 1">
+            </div>
+            <div class="image-item">
+                <img src="https://via.placeholder.com/300" alt="Imagen 2">
+            </div>
+            <div class="image-item">
+                <img src="https://via.placeholder.com/300" alt="Imagen 3">
             </div>
         </section>
     </main>
