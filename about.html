@@ -72,7 +72,6 @@
             font-size: 4rem;  /* Tamaño del texto */
             font-weight: 800; /* Grosor más grueso */
         }
-        
 
         /* Enlace del encabezado que redirige a YouTube */
         header a {
@@ -115,6 +114,25 @@
             font-size: 1.2rem;
         }
 
+        /* Carrusel de imágenes */
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            margin-top: 50px;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 1s ease;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
         /* Diseño adaptable */
         @media (max-width: 768px) {
             .about-section {
@@ -153,7 +171,7 @@
     <!-- Contenido principal -->
     <main>
         <section class="about-section">
-            <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/victorlopez_01.JPG" alt="Víctor López Escalonilla" alt="Víctor López Escalonilla">
+            <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/victorlopez_01.JPG" alt="Víctor López Escalonilla">
             <div class="about-text">
                 <p>
                     Arquitecto apasionado por la innovación y el diseño sostenible, con una formación académica y experiencia temprana con estudios de arquitectura y organismos locales que han enriquecido enormemente mi experiencia profesional. 
@@ -165,13 +183,37 @@
                 </p>
             </div>
         </section>
+
+        <!-- Carrusel de fotos -->
+        <section class="carousel">
+            <div class="carousel-images">
+                <img src="https://via.placeholder.com/800x400?text=Imagen+1" alt="Imagen 1">
+                <img src="https://via.placeholder.com/800x400?text=Imagen+2" alt="Imagen 2">
+                <img src="https://via.placeholder.com/800x400?text=Imagen+3" alt="Imagen 3">
+                <img src="https://via.placeholder.com/800x400?text=Imagen+4" alt="Imagen 4">
+            </div>
+        </section>
     </main>
 
     <!-- Pie de página -->
     <footer>
         <p></p>
     </footer>
+
+    <script>
+        // JavaScript para el carrusel
+        let index = 0;
+        const images = document.querySelector('.carousel-images');
+        const totalImages = images.children.length;
+
+        function moveCarousel() {
+            index++;
+            if (index >= totalImages) index = 0;
+            images.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        setInterval(moveCarousel, 3000); // Desplaza cada 3 segundos
+    </script>
 </body>
 </html>
-
 
