@@ -24,20 +24,22 @@
             margin: 0;
             padding: 0;
             cursor: crosshair;
-            background-color: #dddddd;
+            background-color: #dddddd; /* Color de fondo claro */
         }
 
+        /* Mantener el cursor como cruz en enlaces y botones */
         a, button {
             cursor: crosshair !important;
         }
 
+        /* Redes sociales */
         .social-links {
             position: fixed;
             top: 90px;
             right: 30px;
             display: flex;
             gap: 15px;
-            z-index: 20;
+            z-index: 20; /* Se asegura de que esté visible por encima de todo */
         }
 
         .social-links a {
@@ -50,31 +52,38 @@
             color: #b00000;
         }
 
+        /* Encabezado */
         header {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0);
-            color: #000000;
-            padding: 60px 0px;
-            text-align: center;
-            z-index: 10;
+            width: 100%; /* Ancho completo */
+            background-color: rgba(255, 255, 255, 0); /* Fondo transparente */
+            color: #000000; /* Color del texto */
+            padding: 60px 0px; /* Superior/Inferior: 100px, Izquierda/Derecha: 0px */
+            text-align: center; /* Centra el texto horizontalmente */
+            z-index: 10; /* Asegura que esté encima de otros elementos */
+            cursor: crosshair !important;
         }
 
         header h1, header p {
             margin: 0;
-            font-size: 4rem;
-            font-weight: 800;
+            cursor: crosshair; /* Asegurar que los elementos internos también usen cruz */
+            font-size: 4rem;  /* Tamaño del texto */
+            font-weight: 800; /* Grosor más grueso */
         }
 
-        header a {
-            text-decoration: none;
-            color: inherit;
-        }
-
+        /* Ajustes para el contenido del cuerpo */
         main {
-            margin-top: calc(100px + 90px);
+            margin-top: calc(100px + 90px); /* Altura del header + espacio adicional */
+        }
+
+        main p {
+            margin: 0;
+            cursor: crosshair; /* Asegurar que los elementos internos también usen cruz */
+            font-size: 3 rem;  /* Tamaño del texto */
+            font-weight: 500; /* Grosor más grueso */
+            padding: 30px 30px; /* Superior/Inferior: 100px, Izquierda/Derecha: 0px */
         }
 
         .about-section {
@@ -89,6 +98,7 @@
             max-width: 300px;
             height: auto;
             border-radius: 0px;
+            box-shadow: 0 0px 80px rgba(0, 0, 0, 0);
         }
 
         .about-section .about-text {
@@ -98,6 +108,7 @@
             font-size: 1.2rem;
         }
 
+        /* Carrusel de imágenes */
         .carousel {
             position: relative;
             overflow: hidden;
@@ -116,6 +127,7 @@
             object-fit: cover;
         }
 
+        /* Diseño adaptable */
         @media (max-width: 768px) {
             .about-section {
                 flex-direction: column;
@@ -129,6 +141,7 @@
     </style>
 </head>
 <body>
+    <!-- Redes sociales -->
     <div class="social-links">
         <a href="https://www.instagram.com/esca_lab_" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-instagram"></i>
@@ -141,6 +154,7 @@
         </a>
     </div>
 
+    <!-- Encabezado -->
     <header>
         <a href="https://vescal.github.io">
             <h1>esca_lab</h1>
@@ -148,6 +162,7 @@
         <p></p>
     </header>
 
+    <!-- Contenido principal -->
     <main>
         <section class="about-section">
             <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/victorlopez_01.JPG" alt="Víctor López Escalonilla">
@@ -158,12 +173,20 @@
                     He tenido la suerte de poder colaborar en la rehabilitación y revitalización del patrimonio histórico de Toledo, participando en proyectos que combinan conservación y modernización para mejorar la habitabilidad y sostenibilidad del entorno urbano. 
                     <br><br>
                     Continuamente en busca de seguir aprendiendo y contribuir activamente a proyectos que impacten positivamente en las personas y el entorno en todas sus escalas.
+                    <br><br>
                 </p>
             </div>
         </section>
 
+        <!-- Carrusel de fotos -->
         <section class="carousel">
             <div class="carousel-images">
+                <img src="https://via.placeholder.com/800x400?text=Imagen+1" alt="Imagen 1">
+                <img src="https://via.placeholder.com/800x400?text=Imagen+2" alt="Imagen 2">
+                <img src="https://via.placeholder.com/800x400?text=Imagen+3" alt="Imagen 3">
+                <img src="https://via.placeholder.com/800x400?text=Imagen+4" alt="Imagen 4">
+                <img src="https://via.placeholder.com/800x400?text=Imagen+5" alt="Imagen 5">
+                <!-- Imágenes duplicadas para bucle continuo -->
                 <img src="https://via.placeholder.com/800x400?text=Imagen+1" alt="Imagen 1">
                 <img src="https://via.placeholder.com/800x400?text=Imagen+2" alt="Imagen 2">
                 <img src="https://via.placeholder.com/800x400?text=Imagen+3" alt="Imagen 3">
@@ -173,24 +196,23 @@
         </section>
     </main>
 
+    <!-- Pie de página -->
     <footer>
         <p></p>
     </footer>
 
     <script>
-        let index = 0;
+        // JavaScript para el carrusel continuo
         const images = document.querySelector('.carousel-images');
-        const totalImages = images.children.length;
-
-        const firstImageClone = images.children[0].cloneNode(true);
-        images.appendChild(firstImageClone);
+        const totalImages = images.children.length / 2; // Contar imágenes originales
+        let index = 0;
 
         function moveCarousel() {
             index++;
             images.style.transition = 'transform 1s ease';
             images.style.transform = `translateX(-${index * 100}%)`;
 
-            if (index >= totalImages) {
+            if (index === totalImages) {
                 setTimeout(() => {
                     images.style.transition = 'none';
                     images.style.transform = 'translateX(0)';
@@ -203,5 +225,6 @@
     </script>
 </body>
 </html>
+
 
 
