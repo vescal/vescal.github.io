@@ -27,11 +27,6 @@
             background-color: #dddddd; /* Color de fondo claro */
         }
 
-        /* Mantener el cursor como cruz en enlaces y botones */
-        a, button {
-            cursor: crosshair !important;
-        }
-
         /* Redes sociales */
         .social-links {
             position: fixed;
@@ -39,7 +34,7 @@
             right: 30px;
             display: flex;
             gap: 15px;
-            z-index: 20; /* Se asegura de que esté visible por encima de todo */
+            z-index: 20;
         }
 
         .social-links a {
@@ -57,39 +52,24 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%; /* Ancho completo */
-            background-color: rgba(255, 255, 255, 0); /* Fondo transparente */
-            color: #000000; /* Color del texto */
-            padding: 60px 0px; /* Superior/Inferior: 100px, Izquierda/Derecha: 0px */
-            text-align: center; /* Centra el texto horizontalmente */
-            z-index: 10; /* Asegura que esté encima de otros elementos */
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0);
+            color: #000000;
+            padding: 60px 0px;
+            text-align: center;
+            z-index: 10;
             cursor: crosshair !important;
         }
 
-        header h1, header p {
+        header h1 {
             margin: 0;
-            cursor: crosshair; /* Asegurar que los elementos internos también usen cruz */
-            font-size: 4rem;  /* Tamaño del texto */
-            font-weight: 800; /* Grosor más grueso */
+            font-size: 4rem;
+            font-weight: 800;
         }
 
-        /* Enlace del encabezado que redirige a YouTube */
-        header a {
-            text-decoration: none; /* Elimina el subrayado del enlace */
-            color: inherit; /* Mantiene el color del texto */
-        }
-
-        /* Ajustes para el contenido del cuerpo */
+        /* Contenido principal */
         main {
-            margin-top: calc(100px + 90px); /* Altura del header + espacio adicional */
-        }
-
-        main p {
-            margin: 0;
-            cursor: crosshair; /* Asegurar que los elementos internos también usen cruz */
-            font-size: 3 rem;  /* Tamaño del texto */
-            font-weight: 500; /* Grosor más grueso */
-            padding: 30px 30px; /* Superior/Inferior: 100px, Izquierda/Derecha: 0px */
+            margin-top: calc(100px + 90px);
         }
 
         .about-section {
@@ -103,8 +83,6 @@
         .about-section img {
             max-width: 300px;
             height: auto;
-            border-radius: 0px;
-            box-shadow: 0 0px 80px rgba(0, 0, 0, 0);
         }
 
         .about-section .about-text {
@@ -119,35 +97,34 @@
             position: relative;
             overflow: hidden;
             width: 100%;
+            height: 400px; /* Ajustar a la altura deseada */
             margin-top: 50px;
         }
 
         .carousel-images {
             display: flex;
-            transition: transform 1s ease;
+            animation: slide 20s linear infinite; /* Animación continua */
         }
 
         .carousel-images img {
             width: 100%;
-            height: auto;
+            flex-shrink: 0;
             object-fit: cover;
         }
 
-        /* Diseño adaptable */
-        @media (max-width: 768px) {
-            .about-section {
-                flex-direction: column;
-                text-align: center;
-            }
+        /* Animación de deslizamiento */
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
 
-            .about-section img {
-                margin-bottom: 20px;
-            }
+        /* Duplicar las imágenes */
+        .carousel-images {
+            width: 200%; /* Permite un bucle continuo */
         }
     </style>
 </head>
 <body>
-    <!-- Redes sociales -->
     <div class="social-links">
         <a href="https://www.instagram.com/esca_lab_" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-instagram"></i>
@@ -160,31 +137,22 @@
         </a>
     </div>
 
-    <!-- Encabezado -->
     <header>
         <a href="https://vescal.github.io">
             <h1>esca_lab</h1>
         </a>
-        <p></p>
     </header>
 
-    <!-- Contenido principal -->
     <main>
         <section class="about-section">
             <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/victorlopez_01.JPG" alt="Víctor López Escalonilla">
             <div class="about-text">
                 <p>
-                    Arquitecto apasionado por la innovación y el diseño sostenible, con una formación académica y experiencia temprana con estudios de arquitectura y organismos locales que han enriquecido enormemente mi experiencia profesional. 
-                    <br><br>
-                    He tenido la suerte de poder colaborar en la rehabilitación y revitalización del patrimonio histórico de Toledo, participando en proyectos que combinan conservación y modernización para mejorar la habitabilidad y sostenibilidad del entorno urbano. 
-                    <br><br>
-                    Continuamente en busca de seguir aprendiendo y contribuir activamente a proyectos que impacten positivamente en las personas y el entorno en todas sus escalas.
-                    <br><br>
+                    Arquitecto apasionado por la innovación y el diseño sostenible...
                 </p>
             </div>
         </section>
 
-        <!-- Carrusel de fotos -->
         <section class="carousel">
             <div class="carousel-images">
                 <img src="https://via.placeholder.com/800x400?text=Imagen+1" alt="Imagen 1">
@@ -192,35 +160,14 @@
                 <img src="https://via.placeholder.com/800x400?text=Imagen+3" alt="Imagen 3">
                 <img src="https://via.placeholder.com/800x400?text=Imagen+4" alt="Imagen 4">
                 <img src="https://via.placeholder.com/800x400?text=Imagen+5" alt="Imagen 5">
-                <img src="https://via.placeholder.com/800x400?text=Imagen+6" alt="Imagen 6">
-                <img src="https://via.placeholder.com/800x400?text=Imagen+7" alt="Imagen 7">
-                <img src="https://via.placeholder.com/800x400?text=Imagen+8" alt="Imagen 8">
-                <img src="https://via.placeholder.com/800x400?text=Imagen+9" alt="Imagen 9">
-                <img src="https://via.placeholder.com/800x400?text=Imagen+10" alt="Imagen 10">
+                <!-- Repetimos las imágenes para la animación continua -->
+                <img src="https://via.placeholder.com/800x400?text=Imagen+1" alt="Imagen 1">
+                <img src="https://via.placeholder.com/800x400?text=Imagen+2" alt="Imagen 2">
+                <img src="https://via.placeholder.com/800x400?text=Imagen+3" alt="Imagen 3">
+                <img src="https://via.placeholder.com/800x400?text=Imagen+4" alt="Imagen 4">
+                <img src="https://via.placeholder.com/800x400?text=Imagen+5" alt="Imagen 5">
             </div>
         </section>
     </main>
-
-    <!-- Pie de página -->
-    <footer>
-        <p></p>
-    </footer>
-
-    <script>
-        // JavaScript para el carrusel
-        let index = 0;
-        const images = document.querySelector('.carousel-images');
-        const totalImages = images.children.length;
-
-        function moveCarousel() {
-            index++;
-            if (index >= totalImages) index = 0;
-            images.style.transform = translateX(-${index * 100}%);
-        }
-
-        setInterval(moveCarousel, 3000); // Desplaza cada 3 segundos
-    </script>
 </body>
 </html>
-
-
