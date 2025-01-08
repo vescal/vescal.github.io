@@ -7,10 +7,11 @@
     <title>sobre mí | esca_lab</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-     <!-- Favicon -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/Logo.png">
 
     <style>
+        /* Estilos previos */
         @font-face {
             font-family: 'Helvetica';
             src: url('https://raw.githubusercontent.com/vescal/vescal.github.io/Fonts/helvetica.woff') format('woff'),
@@ -39,7 +40,7 @@
             right: 30px;
             display: flex;
             gap: 15px;
-            z-index: 20; /* Se asegura de que esté visible por encima de todo */
+            z-index: 20;
         }
 
         .social-links a {
@@ -57,40 +58,23 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%; /* Ancho completo */
-            background-color: rgba(255, 255, 255, 0); /* Fondo transparente */
-            color: #000000; /* Color del texto */
-            padding: 60px 0px; /* Superior/Inferior: 100px, Izquierda/Derecha: 0px */
-            text-align: center; /* Centra el texto horizontalmente */
-            z-index: 10; /* Asegura que esté encima de otros elementos */
-            cursor: crosshair !important;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0);
+            color: #000000;
+            padding: 60px 0px;
+            text-align: center;
+            z-index: 10;
         }
 
-        header h1, header p {
+        header h1 {
             margin: 0;
-            cursor: crosshair; /* Asegurar que los elementos internos también usen cruz */
-            font-size: 4rem;  /* Tamaño del texto */
-            font-weight: 800; /* Grosor más grueso */
-        }
-        
-
-        /* Enlace del encabezado que redirige a YouTube */
-        header a {
-            text-decoration: none; /* Elimina el subrayado del enlace */
-            color: inherit; /* Mantiene el color del texto */
+            font-size: 4rem;
+            font-weight: 800;
         }
 
-        /* Ajustes para el contenido del cuerpo */
+        /* Contenido principal */
         main {
-            margin-top: calc(100px + 90px); /* Altura del header + espacio adicional */
-        }
-
-        main p {
-            margin: 0;
-            cursor: crosshair; /* Asegurar que los elementos internos también usen cruz */
-            font-size: 3 rem;  /* Tamaño del texto */
-            font-weight: 500; /* Grosor más grueso */
-            padding: 30px 30px; /* Superior/Inferior: 100px, Izquierda/Derecha: 0px */
+            margin-top: calc(100px + 90px);
         }
 
         .about-section {
@@ -104,8 +88,6 @@
         .about-section img {
             max-width: 300px;
             height: auto;
-            border-radius: 0px;
-            box-shadow: 0 0px 80px rgba(0, 0, 0, 0);
         }
 
         .about-section .about-text {
@@ -115,16 +97,37 @@
             font-size: 1.2rem;
         }
 
-        /* Diseño adaptable */
-        @media (max-width: 768px) {
-            .about-section {
-                flex-direction: column;
-                text-align: center;
-            }
+        /* Carrusel */
+        .carousel-container {
+            overflow: hidden;
+            width: 100%;
+            margin-top: 50px;
+        }
 
-            .about-section img {
-                margin-bottom: 20px;
+        .carousel {
+            display: flex;
+            animation: scroll 20s linear infinite;
+        }
+
+        .carousel img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            margin: 0 10px;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
             }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Copia para el efecto de bucle */
+        .carousel img:last-child {
+            margin-right: 0;
         }
     </style>
 </head>
@@ -147,13 +150,12 @@
         <a href="https://vescal.github.io">
             <h1>esca_lab</h1>
         </a>
-        <p></p>
     </header>
 
     <!-- Contenido principal -->
     <main>
         <section class="about-section">
-            <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/victorlopez_01.JPG" alt="Víctor López Escalonilla" alt="Víctor López Escalonilla">
+            <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/victorlopez_01.JPG" alt="Víctor López Escalonilla">
             <div class="about-text">
                 <p>
                     Arquitecto apasionado por la innovación y el diseño sostenible, con una formación académica y experiencia temprana con estudios de arquitectura y organismos locales que han enriquecido enormemente mi experiencia profesional. 
@@ -161,15 +163,26 @@
                     He tenido la suerte de poder colaborar en la rehabilitación y revitalización del patrimonio histórico de Toledo, participando en proyectos que combinan conservación y modernización para mejorar la habitabilidad y sostenibilidad del entorno urbano. 
                     <br><br>
                     Continuamente en busca de seguir aprendiendo y contribuir activamente a proyectos que impacten positivamente en las personas y el entorno en todas sus escalas.
-                    <br><br>
                 </p>
             </div>
         </section>
     </main>
 
-    <!-- Pie de página -->
-    <footer>
-        <p></p>
-    </footer>
+    <!-- Carrusel -->
+    <div class="carousel-container">
+        <div class="carousel">
+            <img src="https://via.placeholder.com/200x150?text=1" alt="Imagen 1">
+            <img src="https://via.placeholder.com/200x150?text=2" alt="Imagen 2">
+            <img src="https://via.placeholder.com/200x150?text=3" alt="Imagen 3">
+            <img src="https://via.placeholder.com/200x150?text=4" alt="Imagen 4">
+            <img src="https://via.placeholder.com/200x150?text=5" alt="Imagen 5">
+            <img src="https://via.placeholder.com/200x150?text=6" alt="Imagen 6">
+            <img src="https://via.placeholder.com/200x150?text=7" alt="Imagen 7">
+            <img src="https://via.placeholder.com/200x150?text=8" alt="Imagen 8">
+            <img src="https://via.placeholder.com/200x150?text=9" alt="Imagen 9">
+            <img src="https://via.placeholder.com/200x150?text=10" alt="Imagen 10">
+        </div>
+    </div>
 </body>
 </html>
+
