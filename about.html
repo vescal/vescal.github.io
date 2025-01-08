@@ -113,11 +113,12 @@
             overflow: hidden;
             background-color: none; /* Fondo para destacar el carrusel */
             margin-top: 50px; /* Espacio superior */
+            cursor: grab;
         }
 
         .carousel-track {
             display: flex;
-            animation: scroll 40s linear infinite; /* Movimiento más suave */
+            transition: transform 0.3s ease;
         }
 
         .carousel img {
@@ -126,19 +127,6 @@
             object-fit: cover; /* Ajusta la imagen dentro del cuadro */
             margin: 10px;
             border-radius: 0px; /* Bordes ligeramente redondeados */
-        }
-
-        /* Animación más suave */
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(-200%);
-            }
         }
 
         /* Diseño adaptable */
@@ -223,7 +211,42 @@
     <footer>
         <p></p>
     </footer>
+
+    <script>
+        // Funcionalidad de arrastre
+        const carouselTrack = document.querySelector('.carousel-track');
+        let isDragging = false;
+        let startPosition = 0;
+        let currentTranslate = 0;
+
+        carouselTrack.addEventListener('mousedown', startDrag);
+        carouselTrack.addEventListener('mouseup', stopDrag);
+        carouselTrack.addEventListener('mouseleave', stopDrag);
+        carouselTrack.addEventListener('mousemove', drag);
+
+        function startDrag(e) {
+            isDragging = true;
+            startPosition = e.clientX;
+            carouselTrack.style.transition = 'none';
+        }
+
+        function stopDrag() {
+            isDragging = false;
+            carouselTrack.style.transition = 'transform 0.3s ease';
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+
+            const moveX = e.clientX - startPosition;
+            currentTranslate += moveX;
+            carouselTrack.style.transform = `translateX(${currentTranslate}px)`;
+
+            startPosition = e.clientX;
+        }
+    </script>
 </body>
 </html>
+
 
 
