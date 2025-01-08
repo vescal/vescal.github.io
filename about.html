@@ -1,188 +1,59 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <meta name="robots" content="index,follow">
-    <title>sobre mí | esca_lab</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<style>
+    /* Estilo del carrusel */
+    .carousel {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        background-color: #ffffff; /* Fondo para destacar el carrusel */
+        margin-top: 50px; /* Espacio superior */
+    }
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/Logo.png">
+    .carousel-track {
+        display: flex;
+        animation: scroll 20s linear infinite; /* Movimiento hacia la izquierda */
+    }
 
-    <style>
-        /* Estilos previos */
-        @font-face {
-            font-family: 'Helvetica';
-            src: url('https://raw.githubusercontent.com/vescal/vescal.github.io/Fonts/helvetica.woff') format('woff'),
-                 url('https://raw.githubusercontent.com/vescal/vescal.github.io/Fonts/helvetica-bold.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
+    .carousel img {
+        width: 100px; /* Tamaño cuadrado de las imágenes */
+        height: 100px;
+        object-fit: cover; /* Ajusta la imagen dentro del cuadro */
+        margin: 10px;
+        border-radius: 5px; /* Bordes ligeramente redondeados */
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
         }
-
-        body {
-            font-family: 'Helvetica', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            cursor: crosshair;
-            background-color: #dddddd; /* Color de fondo claro */
+        100% {
+            transform: translateX(-100%);
         }
+    }
+</style>
 
-        /* Mantener el cursor como cruz en enlaces y botones */
-        a, button {
-            cursor: crosshair !important;
-        }
-
-        /* Redes sociales */
-        .social-links {
-            position: fixed;
-            top: 90px;
-            right: 30px;
-            display: flex;
-            gap: 15px;
-            z-index: 20;
-        }
-
-        .social-links a {
-            font-size: 24px;
-            color: #000000;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: #b00000;
-        }
-
-        /* Encabezado */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0);
-            color: #000000;
-            padding: 60px 0px;
-            text-align: center;
-            z-index: 10;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 4rem;
-            font-weight: 800;
-        }
-
-        /* Contenido principal */
-        main {
-            margin-top: calc(100px + 90px);
-        }
-
-        .about-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 50px;
-            gap: 20px;
-        }
-
-        .about-section img {
-            max-width: 300px;
-            height: auto;
-        }
-
-        .about-section .about-text {
-            max-width: 900px;
-            text-align: justify;
-            line-height: 1.6;
-            font-size: 1.2rem;
-        }
-
-        /* Carrusel */
-        .carousel-container {
-            overflow: hidden;
-            width: 100%;
-            margin-top: 50px;
-        }
-
-        .carousel {
-            display: flex;
-            animation: scroll 20s linear infinite;
-        }
-
-        .carousel img {
-            width: 200px;
-            height: 150px;
-            object-fit: cover;
-            margin: 0 10px;
-        }
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-
-        /* Copia para el efecto de bucle */
-        .carousel img:last-child {
-            margin-right: 0;
-        }
-    </style>
-</head>
-<body>
-    <!-- Redes sociales -->
-    <div class="social-links">
-        <a href="https://www.instagram.com/esca_lab_" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/víctor-lópez-escalonilla/" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="about.html" rel="noopener noreferrer">
-            <i class="fas fa-user"></i>
-        </a>
+<!-- Carrusel infinito -->
+<div class="carousel">
+    <div class="carousel-track">
+        <img src="https://via.placeholder.com/100" alt="Imagen 1">
+        <img src="https://via.placeholder.com/100" alt="Imagen 2">
+        <img src="https://via.placeholder.com/100" alt="Imagen 3">
+        <img src="https://via.placeholder.com/100" alt="Imagen 4">
+        <img src="https://via.placeholder.com/100" alt="Imagen 5">
+        <img src="https://via.placeholder.com/100" alt="Imagen 6">
+        <img src="https://via.placeholder.com/100" alt="Imagen 7">
+        <img src="https://via.placeholder.com/100" alt="Imagen 8">
+        <img src="https://via.placeholder.com/100" alt="Imagen 9">
+        <img src="https://via.placeholder.com/100" alt="Imagen 10">
+        <!-- Repetimos las imágenes para un bucle continuo -->
+        <img src="https://via.placeholder.com/100" alt="Imagen 1">
+        <img src="https://via.placeholder.com/100" alt="Imagen 2">
+        <img src="https://via.placeholder.com/100" alt="Imagen 3">
+        <img src="https://via.placeholder.com/100" alt="Imagen 4">
+        <img src="https://via.placeholder.com/100" alt="Imagen 5">
+        <img src="https://via.placeholder.com/100" alt="Imagen 6">
+        <img src="https://via.placeholder.com/100" alt="Imagen 7">
+        <img src="https://via.placeholder.com/100" alt="Imagen 8">
+        <img src="https://via.placeholder.com/100" alt="Imagen 9">
+        <img src="https://via.placeholder.com/100" alt="Imagen 10">
     </div>
-
-    <!-- Encabezado -->
-    <header>
-        <a href="https://vescal.github.io">
-            <h1>esca_lab</h1>
-        </a>
-    </header>
-
-    <!-- Contenido principal -->
-    <main>
-        <section class="about-section">
-            <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/victorlopez_01.JPG" alt="Víctor López Escalonilla">
-            <div class="about-text">
-                <p>
-                    Arquitecto apasionado por la innovación y el diseño sostenible, con una formación académica y experiencia temprana con estudios de arquitectura y organismos locales que han enriquecido enormemente mi experiencia profesional. 
-                    <br><br>
-                    He tenido la suerte de poder colaborar en la rehabilitación y revitalización del patrimonio histórico de Toledo, participando en proyectos que combinan conservación y modernización para mejorar la habitabilidad y sostenibilidad del entorno urbano. 
-                    <br><br>
-                    Continuamente en busca de seguir aprendiendo y contribuir activamente a proyectos que impacten positivamente en las personas y el entorno en todas sus escalas.
-                </p>
-            </div>
-        </section>
-    </main>
-
-    <!-- Carrusel -->
-    <div class="carousel-container">
-        <div class="carousel">
-            <img src="https://via.placeholder.com/200x150?text=1" alt="Imagen 1">
-            <img src="https://via.placeholder.com/200x150?text=2" alt="Imagen 2">
-            <img src="https://via.placeholder.com/200x150?text=3" alt="Imagen 3">
-            <img src="https://via.placeholder.com/200x150?text=4" alt="Imagen 4">
-            <img src="https://via.placeholder.com/200x150?text=5" alt="Imagen 5">
-            <img src="https://via.placeholder.com/200x150?text=6" alt="Imagen 6">
-            <img src="https://via.placeholder.com/200x150?text=7" alt="Imagen 7">
-            <img src="https://via.placeholder.com/200x150?text=8" alt="Imagen 8">
-            <img src="https://via.placeholder.com/200x150?text=9" alt="Imagen 9">
-            <img src="https://via.placeholder.com/200x150?text=10" alt="Imagen 10">
-        </div>
-    </div>
-</body>
-</html>
-
+</div>
