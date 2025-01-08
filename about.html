@@ -93,16 +93,37 @@
             padding: 30px 30px; /* Superior/Inferior: 100px, Izquierda/Derecha: 0px */
         }
 
-        /* Diseño adaptable */
-        @media (max-width: 768px) {
-            .images-container {
-                grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
-            }
+        .about-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+            gap: 20px;
         }
 
-        @media (max-width: 480px) {
-            .images-container {
-                grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+        .about-section img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-section .about-text {
+            max-width: 600px;
+            text-align: justify;
+            line-height: 1.6;
+            font-size: 1.2rem;
+        }
+
+        /* Diseño adaptable */
+        @media (max-width: 768px) {
+            .about-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-section img {
+                margin-bottom: 20px;
             }
         }
     </style>
@@ -131,7 +152,19 @@
 
     <!-- Contenido principal -->
     <main>
-        <p>Descripción del proyecto</p>
+        <section class="about-section">
+            <img src="URL_DE_TU_IMAGEN" alt="Mi imagen">
+            <div class="about-text">
+                <p>
+                    ¡Hola! Soy [Tu Nombre], un apasionado por [tu área de interés o profesión].
+                    A lo largo de mi carrera, me he dedicado a [una breve descripción de tus actividades, proyectos o logros].
+                    Me entusiasma la oportunidad de colaborar en proyectos innovadores y de contribuir con mis habilidades en [áreas específicas].
+                    <br><br>
+                    En mi tiempo libre, disfruto de [tus hobbies o intereses personales].
+                    Si deseas saber más sobre mí o mis proyectos, no dudes en contactarme a través de mis redes sociales.
+                </p>
+            </div>
+        </section>
     </main>
 
     <!-- Pie de página -->
@@ -140,4 +173,5 @@
     </footer>
 </body>
 </html>
+
 
