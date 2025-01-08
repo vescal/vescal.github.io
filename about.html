@@ -108,79 +108,6 @@
             color: #333;
             max-width: 800px;
         }
-
-        /* Contenedor de imágenes */
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Tres columnas */
-            gap: 30px;
-            margin: 15px auto;
-            max-width: 1450px;
-        }
-
-        /* Elementos de imágenes */
-        .project-item {
-            background-color: #f0f0f0;
-            border: none;
-            padding: 0px;
-            text-align: center;
-            aspect-ratio: 1 / 1; /* Hace que cada elemento sea cuadrado */
-            position: relative;
-            overflow: hidden;
-
-            opacity: 0; /* Inicialmente invisible */
-            transform: translateY(30px); /* Inicia desplazado hacia abajo */
-            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
-        }
-
-        /* Cuando la imagen entra en la vista (se hace visible) */
-        .project-item.visible {
-            opacity: 1;
-            transform: translateY(0); /* Vuelve a la posición original */
-        }
-
-        .project-item img {
-            width: 100%; /* Asegura que ocupe todo el ancho del contenedor */
-            height: 100%; /* Asegura que ocupe todo el alto del contenedor */
-            object-fit: cover; /* Escala la imagen para cubrir completamente el área del contenedor */
-            object-position: center; /* Centra la imagen dentro del contenedor */
-            display: block; /* Elimina el espacio extra causado por el comportamiento inline */
-            border: none; /* Asegura que no haya bordes alrededor de la imagen */
-            margin: 0; /* Elimina cualquier margen que pueda estar causando el marco blanco */
-            padding: 0; /* Elimina rellenos adicionales */
-        }
-
-        .project-item .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
-
-        .project-item:hover .overlay {
-            opacity: 1;
-        }
-
-        /* Diseño adaptable */
-        @media (max-width: 768px) {
-            .projects-container {
-                grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .projects-container {
-                grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
-            }
-        }
     </style>
 </head>
 <body>
@@ -224,19 +151,7 @@
                 </p>
             </div>
         </section>
-
-        <!-- Contenedor de imágenes -->
-        <section class="images-container">
-            <div class="image-item">
-                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 1">
-            </div>
-            <div class="image-item">
-                <img src="https://via.placeholder.com/300" alt="Imagen 2">
-            </div>
-            <div class="image-item">
-                <img src="https://via.placeholder.com/300" alt="Imagen 3">
-            </div>
-        </section>
     </main>
 </body>
 </html>
+
