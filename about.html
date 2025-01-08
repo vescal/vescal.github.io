@@ -24,7 +24,7 @@
             margin: 0;
             padding: 0;
             cursor: crosshair;
-            background-color: #dddddd; /* Color de fondo claro */
+            background-color: #dddddd;
         }
 
         /* Mantener el cursor como cruz en enlaces y botones */
@@ -39,7 +39,7 @@
             right: 30px;
             display: flex;
             gap: 15px;
-            z-index: 20; /* Se asegura de que esté visible por encima de todo */
+            z-index: 20;
         }
 
         .social-links a {
@@ -57,31 +57,36 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%; /* Ancho completo */
-            background-color: rgba(255, 255, 255, 0); /* Fondo transparente */
-            color: #000000; /* Color del texto */
-            padding: 60px 0px; /* Superior/Inferior: 100px, Izquierda/Derecha: 0px */
-            text-align: center; /* Centra el texto horizontalmente */
-            z-index: 10; /* Asegura que esté encima de otros elementos */
-            cursor: crosshair !important;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0);
+            color: #000000;
+            padding: 60px 0px;
+            text-align: center;
+            z-index: 10;
         }
 
         header h1, header p {
             margin: 0;
-            cursor: crosshair; /* Asegurar que los elementos internos también usen cruz */
-            font-size: 4rem;  /* Tamaño del texto */
-            font-weight: 800; /* Grosor más grueso */
+            font-size: 4rem;
+            font-weight: 800;
         }
 
-        /* Eliminar subrayado del enlace del encabezado */
+        /* Enlace del encabezado */
         header a {
-            text-decoration: none; /* Elimina el subrayado del enlace */
-            color: inherit; /* Mantiene el color del texto */
+            text-decoration: none;
+            color: inherit;
         }
-        
+
         /* Ajustes para el contenido del cuerpo */
         main {
-            margin-top: calc(100px + 90px); /* Altura del header + espacio adicional */
+            margin-top: calc(100px + 90px);
+        }
+
+        main p {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: 500;
+            padding: 30px;
         }
 
         .about-section {
@@ -94,8 +99,9 @@
 
         .about-section img {
             max-width: 300px;
-            height: auto;
-            border-radius: 0px;
+            height: 300px;
+            object-fit: cover; /* Para asegurar que la imagen se recorte en lugar de deformarse */
+            border-radius: 0; /* Sin bordes redondeados */
             box-shadow: 0 0px 80px rgba(0, 0, 0, 0);
         }
 
@@ -106,29 +112,28 @@
             font-size: 1.2rem;
         }
 
-        /* Carrusel infinito */
-        .carousel {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            background-color: #ffffff; /* Fondo para destacar el carrusel */
-            margin-top: 50px; /* Espacio superior */
-        }
-
-        .carousel-track {
+        /* Carrusel de imágenes */
+        .carousel-container {
             display: flex;
-            animation: scroll 20s linear infinite; /* Movimiento hacia la izquierda */
+            overflow: hidden;
+            width: 100%;
+            margin-top: 50px;
         }
 
-        .carousel img {
-            width: 100px; /* Tamaño cuadrado de las imágenes */
-            height: 100px;
-            object-fit: cover; /* Ajusta la imagen dentro del cuadro */
-            margin: 10px;
-            border-radius: 5px; /* Bordes ligeramente redondeados */
+        .carousel-images {
+            display: flex;
+            animation: scroll-left 60s linear infinite;
         }
 
-        @keyframes scroll {
+        .carousel-images img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 0; /* Asegura que las imágenes sean completamente cuadradas */
+        }
+
+        /* Animación para el carrusel */
+        @keyframes scroll-left {
             0% {
                 transform: translateX(0);
             }
@@ -169,6 +174,7 @@
         <a href="https://vescal.github.io">
             <h1>esca_lab</h1>
         </a>
+        <p></p>
     </header>
 
     <!-- Contenido principal -->
@@ -177,9 +183,9 @@
             <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/victorlopez_01.JPG" alt="Víctor López Escalonilla">
             <div class="about-text">
                 <p>
-                    Arquitecto apasionado por la innovación y el diseño sostenible, con una formación académica y experiencia temprana con estudios de arquitectura y organismos locales que han enriquecido enormemente mi experiencia profesional. 
+                    Arquitecto apasionado por la innovación y el diseño sostenible, con una formación académica y experiencia temprana con estudios de arquitectura y organismos locales que han enriquecido enormemente mi experiencia profesional.
                     <br><br>
-                    He tenido la suerte de poder colaborar en la rehabilitación y revitalización del patrimonio histórico de Toledo, participando en proyectos que combinan conservación y modernización para mejorar la habitabilidad y sostenibilidad del entorno urbano. 
+                    He tenido la suerte de poder colaborar en la rehabilitación y revitalización del patrimonio histórico de Toledo, participando en proyectos que combinan conservación y modernización para mejorar la habitabilidad y sostenibilidad del entorno urbano.
                     <br><br>
                     Continuamente en busca de seguir aprendiendo y contribuir activamente a proyectos que impacten positivamente en las personas y el entorno en todas sus escalas.
                     <br><br>
@@ -187,32 +193,21 @@
             </div>
         </section>
 
-        <!-- Carrusel infinito -->
-        <div class="carousel">
-            <div class="carousel-track">
-                <img src="https://via.placeholder.com/100" alt="Imagen 1">
-                <img src="https://via.placeholder.com/100" alt="Imagen 2">
-                <img src="https://via.placeholder.com/100" alt="Imagen 3">
-                <img src="https://via.placeholder.com/100" alt="Imagen 4">
-                <img src="https://via.placeholder.com/100" alt="Imagen 5">
-                <img src="https://via.placeholder.com/100" alt="Imagen 6">
-                <img src="https://via.placeholder.com/100" alt="Imagen 7">
-                <img src="https://via.placeholder.com/100" alt="Imagen 8">
-                <img src="https://via.placeholder.com/100" alt="Imagen 9">
-                <img src="https://via.placeholder.com/100" alt="Imagen 10">
-                <!-- Repetimos las imágenes para el efecto continuo -->
-                <img src="https://via.placeholder.com/100" alt="Imagen 1">
-                <img src="https://via.placeholder.com/100" alt="Imagen 2">
-                <img src="https://via.placeholder.com/100" alt="Imagen 3">
-                <img src="https://via.placeholder.com/100" alt="Imagen 4">
-                <img src="https://via.placeholder.com/100" alt="Imagen 5">
-                <img src="https://via.placeholder.com/100" alt="Imagen 6">
-                <img src="https://via.placeholder.com/100" alt="Imagen 7">
-                <img src="https://via.placeholder.com/100" alt="Imagen 8">
-                <img src="https://via.placeholder.com/100" alt="Imagen 9">
-                <img src="https://via.placeholder.com/100" alt="Imagen 10">
+        <!-- Carrusel de imágenes -->
+        <section class="carousel-container">
+            <div class="carousel-images">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/imagen1.jpg" alt="Imagen 1">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/imagen2.jpg" alt="Imagen 2">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/imagen3.jpg" alt="Imagen 3">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/imagen4.jpg" alt="Imagen 4">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/imagen5.jpg" alt="Imagen 5">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/imagen6.jpg" alt="Imagen 6">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/imagen7.jpg" alt="Imagen 7">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/imagen8.jpg" alt="Imagen 8">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/imagen9.jpg" alt="Imagen 9">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/imagen10.jpg" alt="Imagen 10">
             </div>
-        </div>
+        </section>
     </main>
 
     <!-- Pie de página -->
