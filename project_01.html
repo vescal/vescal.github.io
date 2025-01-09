@@ -121,10 +121,11 @@
 
         /* Diseño adaptable */
         @media (max-width: 768px) {
-            .projects-container {
-                grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
+            .project-description {
+                text-align: justify; /* Justifica el texto */
+                padding: 0px; /* Espaciado lateral para mejorar la legibilidad */
+                max-width: 100%; /* Ancho igual al de la imagen */
             }
-
             .social-links {
                 flex-direction: column; /* Cambiar a disposición vertical */
                 top: 300px; /* Ajustar la posición para evitar el encabezado */
