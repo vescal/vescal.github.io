@@ -7,7 +7,7 @@
     <title>Proyecto 01 | esca_lab</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-     <!-- Favicon -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/Logo.png">
 
     <style>
@@ -82,6 +82,14 @@
         /* Ajustes para el contenido del cuerpo */
         main {
             margin-top: calc(100px + 90px); /* Altura del header + espacio adicional */
+            padding: 30px; /* Espaciado alrededor del contenido */
+        }
+
+        /* Descripción del proyecto */
+        .project-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
         }
 
         /* Contenedor de imágenes */
@@ -101,6 +109,12 @@
             border: 1px solid #ddd;
         }
 
+        .image-item img {
+            width: 100%;
+            height: auto;
+            object-fit: contain; /* Ajusta la imagen para que se vea con su proporción */
+        }
+
         /* Diseño adaptable */
         @media (max-width: 768px) {
             .images-container {
@@ -110,76 +124,6 @@
 
         @media (max-width: 480px) {
             .images-container {
-                grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
-            }
-        }
-
-        /* Elementos del proyecto */
-        .project-item {
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-            aspect-ratio: 1 / 1; /* Hace que cada elemento sea cuadrado */
-            position: relative;
-            overflow: hidden;
-
-            opacity: 0; /* Inicialmente invisible */
-            transform: translateY(30px); /* Inicia desplazado hacia abajo */
-            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
-        }
-
-        /* Cuando el proyecto entra en la vista (se hace visible) */
-        .project-item.visible {
-            opacity: 1;
-            transform: translateY(0); /* Vuelve a la posición original */
-        }
-
-        .project-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .project-item .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
-
-        .project-item:hover .overlay {
-            opacity: 1;
-        }
-
-        /* Diseño adaptable */
-        @media (max-width: 768px) {
-            .projects-container {
-                grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
-            }
-
-            .social-links {
-                flex-direction: column; /* Cambiar a disposición vertical */
-                top: 300px; /* Ajustar la posición para evitar el encabezado */
-                right: 30px; /* Posición más cercana al borde derecho */
-                gap: 30px; /* Espacio entre los íconos */
-            }
-
-            header {
-                padding: 40px 0px; /* Ajusta el espacio del encabezado si es necesario */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .projects-container {
                 grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
             }
         }
@@ -207,7 +151,37 @@
     </header>
 
     <!-- Contenido principal -->
-    <main></main>
+    <main>
+        <!-- Descripción del proyecto -->
+        <div class="project-description">
+            <p>Aquí puedes colocar la descripción del proyecto. Explica los detalles más importantes sobre lo que se hizo, los materiales utilizados, el proceso de diseño o cualquier otro aspecto relevante que quieras compartir.</p>
+        </div>
+
+        <!-- Contenedor de imágenes -->
+        <section>
+            <div class="images-container">
+                <!-- Imagen 1 -->
+                <div class="image-item">
+                    <img src="URL_DE_LA_IMAGEN1" alt="Descripción de la imagen 1">
+                </div>
+
+                <!-- Imagen 2 -->
+                <div class="image-item">
+                    <img src="URL_DE_LA_IMAGEN2" alt="Descripción de la imagen 2">
+                </div>
+
+                <!-- Imagen 3 -->
+                <div class="image-item">
+                    <img src="URL_DE_LA_IMAGEN3" alt="Descripción de la imagen 3">
+                </div>
+
+                <!-- Imagen 4 -->
+                <div class="image-item">
+                    <img src="URL_DE_LA_IMAGEN4" alt="Descripción de la imagen 4">
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Pie de página -->
     <footer></footer>
@@ -247,4 +221,3 @@
     </script>
 </body>
 </html>
-
