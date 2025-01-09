@@ -135,11 +135,19 @@
             header {
                 padding: 40px 0px; /* Ajusta el espacio del encabezado si es necesario */
             }
+
+            .project-description {
+                max-width: 90%;  /* Reduce el ancho del cuadro de texto en pantallas pequeñas */
+            }
         }
 
         @media (max-width: 480px) {
             .projects-container {
                 grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+            }
+
+            .project-description {
+                max-width: 80%; /* Reduce aún más el ancho en pantallas muy pequeñas */
             }
         }
     </style>
