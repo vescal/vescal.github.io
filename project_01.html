@@ -88,9 +88,9 @@
         /* Descripción del proyecto */
         .project-description {
             font-size: 1.2rem;
-            font-weight: 800;
             line-height: 1.6;
             margin-bottom: 30px;
+            text-align: justify; /* Justifica el texto */
         }
 
         /* Contenedor de imágenes */
@@ -121,11 +121,23 @@
             .images-container {
                 grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
             }
+
+            .social-links {
+                flex-direction: column; /* Cambiar a disposición vertical */
+                top: 90px; /* Ajusta la posición para evitar el encabezado */
+                right: 10px; /* Posición más cercana al borde derecho */
+                gap: 15px; /* Espacio entre los íconos */
+            }
         }
 
         @media (max-width: 480px) {
             .images-container {
                 grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+            }
+
+            .social-links {
+                top: 100px; /* Ajusta la posición en pantallas más pequeñas */
+                right: 10px; /* Ajusta la distancia del borde derecho */
             }
         }
     </style>
@@ -155,7 +167,7 @@
     <main>
         <!-- Descripción del proyecto -->
         <div class="project-description">
-            <p>Aquí puedes colocar la descripción del proyecto. Explica los detalles más importantes sobre lo que se hizo, los materiales utilizados, el proceso de diseño o cualquier otro aspecto relevante que quieras compartir.</p>
+            <p>Aquí puedes colocar la descripción del proyecto. Explica los detalles más importantes sobre lo que se hizo, los materiales utilizados, el proceso de diseño o cualquier otro aspecto relevante que quieras compartir. El texto estará justificado para mejorar la legibilidad y dar un aspecto más limpio y ordenado a la página.</p>
         </div>
 
         <!-- Contenedor de imágenes -->
@@ -163,7 +175,7 @@
             <div class="images-container">
                 <!-- Imagen 1 -->
                 <div class="image-item">
-                    <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Descripción de la imagen 1">
+                    <img src="URL_DE_LA_IMAGEN1" alt="Descripción de la imagen 1">
                 </div>
 
                 <!-- Imagen 2 -->
