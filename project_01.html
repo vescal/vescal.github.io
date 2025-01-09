@@ -117,13 +117,24 @@
 
         /* Diseño adaptable */
         @media (max-width: 768px) {
-            .images-container {
+            .projects-container {
                 grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
+            }
+
+            .social-links {
+                flex-direction: column; /* Cambiar a disposición vertical */
+                top: 300px; /* Ajustar la posición para evitar el encabezado */
+                right: 30px; /* Posición más cercana al borde derecho */
+                gap: 30px; /* Espacio entre los íconos */
+            }
+
+            header {
+                padding: 40px 0px; /* Ajusta el espacio del encabezado si es necesario */
             }
         }
 
         @media (max-width: 480px) {
-            .images-container {
+            .projects-container {
                 grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
             }
         }
