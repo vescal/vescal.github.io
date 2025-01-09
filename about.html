@@ -145,6 +145,23 @@
             }
         }
 
+        /* Animación de fade-in */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .about-section img,
+        .about-section .about-text {
+            animation: fadeIn 1.5s ease-in-out; /* 1.5s de duración y transición suave */
+            opacity: 0; /* Iniciar con opacidad 0 */
+            animation-fill-mode: forwards; /* Mantener el estado final de la animación */
+        }
+
         /* Diseño adaptable */
         @media (max-width: 768px) {
             .projects-container {
@@ -258,3 +275,4 @@
     </footer>
 </body>
 </html>
+
