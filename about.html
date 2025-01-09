@@ -98,8 +98,6 @@
             justify-content: center;
             padding: 50px;
             gap: 20px;
-            opacity: 0;
-            animation: fadeIn 1.5s ease-in-out forwards;
         }
 
         .about-section img {
@@ -147,16 +145,6 @@
             }
         }
 
-        /* Animación de aparición */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
         /* Diseño adaptable */
         @media (max-width: 768px) {
             .projects-container {
@@ -186,8 +174,8 @@
 
             .about-section .about-text {
                 text-align: justify; /* Justifica el texto */
-                padding: 0 15px; /* Espaciado lateral para mejorar la legibilidad */
-                max-width: 90%; /* Ancho mayor para el texto en móviles */
+                padding: 0px; /* Espaciado lateral para mejorar la legibilidad */
+                max-width: 100%; /* Ancho igual al de la imagen */
             }
         }
 
