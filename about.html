@@ -289,9 +289,6 @@
                 <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/victorlopez_01.JPG" alt="Imagen 9">
                 <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/victorlopez_01.JPG" alt="Imagen 10">
             </div>
-            <!-- Botones de navegación -->
-            <button class="carousel-button prev" id="prev">&#10094;</button>
-            <button class="carousel-button next" id="next">&#10095;</button>
         </div>
     </main>
 
@@ -299,42 +296,5 @@
     <footer>
         <p></p>
     </footer>
-
-    <!-- JavaScript -->
-    <script>
-        let currentIndex = 0;
-        const images = document.querySelectorAll('.carousel img');
-        const totalImages = images.length;
-        const carouselTrack = document.querySelector('.carousel-track');
-        
-        const prevButton = document.getElementById('prev');
-        const nextButton = document.getElementById('next');
-
-        // Mover al siguiente slide
-        nextButton.addEventListener('click', () => {
-            if (currentIndex < totalImages - 1) {
-                currentIndex++;
-            } else {
-                currentIndex = 0; // Regresa al primer elemento
-            }
-            updateCarousel();
-        });
-
-        // Mover al slide anterior
-        prevButton.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-            } else {
-                currentIndex = totalImages - 1; // Regresa al último elemento
-            }
-            updateCarousel();
-        });
-
-        function updateCarousel() {
-            const offset = -currentIndex * 320; // 320px es el ancho de cada imagen + el margen
-            carouselTrack.style.transform = `translateX(${offset}px)`;
-        }
-    </script>
 </body>
 </html>
-
