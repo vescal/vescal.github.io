@@ -287,21 +287,27 @@
         let currentIndex = 0;
         const slides = document.querySelectorAll('.carousel img');
         const totalSlides = slides.length;
+        const carouselTrack = document.querySelector('.carousel-track');
+        const slideWidth = slides[0].offsetWidth + 20; // Ancho de la imagen más el margen
 
         function moveSlide(direction) {
+            const maxIndex = totalSlides - 1;
+
             // Calcula el índice nuevo
             const newIndex = currentIndex + direction;
 
-            // Limitar el movimiento para que no pase de los bordes
-            if (newIndex >= 0 && newIndex < totalSlides) {
+            // Limita el índice a que no pase de los extremos
+            if (newIndex >= 0 && newIndex <= maxIndex) {
                 currentIndex = newIndex;
-                // Mover el carrusel
-                const newTransform = -currentIndex * 300; // 300px es el ancho de las imágenes
-                document.querySelector('.carousel-track').style.transition = 'transform 0.5s ease-in-out'; // Transition suave
-                document.querySelector('.carousel-track').style.transform = `translateX(${newTransform}px)`;
+
+                // Calcula el desplazamiento para el carrusel
+                const newTransform = -currentIndex * slideWidth;
+                carouselTrack.style.transition = 'transform 0.5s ease-in-out'; // Transición suave
+                carouselTrack.style.transform = `translateX(${newTransform}px)`;
             }
         }
     </script>
 </body>
 </html>
+
 
