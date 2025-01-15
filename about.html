@@ -121,19 +121,22 @@
             width: 100%;
             overflow: hidden;
             margin-top: 50px; /* Espacio superior */
+            display: flex;
+            justify-content: center;  /* Asegura que el contenido del carrusel esté centrado */
         }
 
         .carousel-track {
             display: flex;
-            transition: transform 0.5s ease-in-out; /* Suaviza el movimiento */
+            transition: transform 0.5s ease-in-out;
         }
 
         .carousel img {
-            width: 300px;
+            width: 300px; /* Controla el tamaño de las imágenes */
             height: 300px;
             object-fit: cover;
-            margin: 10px;
+            margin: 0 10px; /* Agrega margen entre las imágenes */
             border-radius: 0px;
+            flex-shrink: 0; /* Asegura que las imágenes no se reduzcan de tamaño */
         }
 
         /* Controles del carrusel */
@@ -279,15 +282,9 @@
         const totalSlides = slides.length;
 
         function moveSlide(direction) {
-            // Calcula el nuevo índice
-            const newIndex = currentIndex + direction;
-
-            // Impide desplazarse más allá del primer slide (izquierda) o del último (derecha)
-            if (newIndex >= 0 && newIndex < totalSlides) {
-                currentIndex = newIndex;
-                const newTransform = -currentIndex * 300; // 300px es el ancho de las imágenes
-                document.querySelector('.carousel-track').style.transform = `translateX(${newTransform}px)`;
-            }
+            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+            const newTransform = -currentIndex * (slides[0].offsetWidth + 20); // 20px es el margen entre las imágenes
+            document.querySelector('.carousel-track').style.transform = `translateX(${newTransform}px)`;
         }
     </script>
 </body>
