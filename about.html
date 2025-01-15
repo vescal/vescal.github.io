@@ -310,7 +310,7 @@
             if (currentIndex === 0) {
                 setTimeout(() => {
                     document.querySelector('.carousel-track').style.transition = 'none'; // Sin transición
-                    currentIndex = 10; // Ir al final totalSlides - 10
+                    currentIndex = totalSlides - 1; // Ir al final 
                     document.querySelector('.carousel-track').style.transform = `translateX(${-currentIndex * 300}px)`; // Mover
                 }, 500); // Esperar a que termine la animación
             }
