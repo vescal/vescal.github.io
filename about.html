@@ -261,7 +261,7 @@
         <!-- Carrusel de imágenes -->
         <div class="carousel">
             <button class="carousel-control prev" onclick="moveSlide(-1)">&#10094;</button>
-            <div class="carousel-track">
+            <div class="carousel-track" id="carouselTrack">
                 <!-- Añadir imágenes duplicadas para el bucle -->
                 <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 1">
                 <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 2">
@@ -290,6 +290,9 @@
         const carouselTrack = document.querySelector('.carousel-track');
         const slideWidth = slides[0].offsetWidth + 20; // Ancho de la imagen más el margen
 
+        let isMouseDown = false;
+        let startX, scrollLeft;
+
         function moveSlide(direction) {
             const maxIndex = totalSlides - 1;
 
@@ -306,6 +309,30 @@
                 carouselTrack.style.transform = `translateX(${newTransform}px)`;
             }
         }
+
+        // Evento de arrastre
+        carouselTrack.addEventListener('mousedown', (e) => {
+            isMouseDown = true;
+            startX = e.pageX - carouselTrack.offsetLeft;
+            scrollLeft = carouselTrack.scrollLeft;
+        });
+
+        carouselTrack.addEventListener('mouseleave', () => {
+            isMouseDown = false;
+        });
+
+        carouselTrack.addEventListener('mouseup', () => {
+            isMouseDown = false;
+        });
+
+        carouselTrack.addEventListener('mousemove', (e) => {
+            if (!isMouseDown) return;
+            e.preventDefault();
+            const x = e.pageX - carouselTrack.offsetLeft;
+            const walk = (x - startX) * 3; // Ajuste de velocidad
+            carouselTrack.style.transition = 'none'; // Sin transición al mover
+            carouselTrack.scrollLeft = scrollLeft - walk;
+        });
     </script>
 </body>
 </html>
