@@ -290,6 +290,18 @@
         const carouselTrack = document.querySelector('.carousel-track');
         const slideWidth = slides[0].offsetWidth + 20; // Ancho de la imagen más el margen
 
+        function updateCarouselPosition() {
+            const carouselWidth = document.querySelector('.carousel').offsetWidth;
+            const visibleSlides = Math.floor(carouselWidth / slideWidth);
+            const firstVisibleSlide = Math.floor((visibleSlides - 1) / 2); // Índice de la primera imagen visible centrada
+
+            // Mueve el carrusel para centrar la primera imagen
+            currentIndex = firstVisibleSlide;
+            const newTransform = -currentIndex * slideWidth;
+            carouselTrack.style.transition = 'transform 0.5s ease-in-out';
+            carouselTrack.style.transform = `translateX(${newTransform}px)`;
+        }
+
         function moveSlide(direction) {
             const maxIndex = totalSlides - 1;
 
@@ -306,9 +318,13 @@
                 carouselTrack.style.transform = `translateX(${newTransform}px)`;
             }
         }
+
+        // Centrar la primera imagen al cargar
+        window.onload = updateCarouselPosition;
     </script>
 </body>
 </html>
+
 
 
 
