@@ -131,11 +131,14 @@
         }
 
         /* Diseño adaptable */
-        @media (max-width: 1800px) {
+        @media (max-width: 1080px) {
             .projects-container {
                 grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
             }
 
+             main {
+                margin-top: 70px; /* Reducido el espacio entre el encabezado y el contenido */
+            }
             .social-links {
                 flex-direction: column; /* Cambiar a disposición vertical */
                 top: 30%; /* Ajustar la posición para evitar el encabezado */
@@ -153,9 +156,6 @@
             .project-description {
                 max-width: 80%;  /* Reduce el ancho del cuadro de texto en pantallas pequeñas */
             }
-            main {
-                margin-top: 70px; /* Reducido el espacio entre el encabezado y el contenido */
-            }
         }
 
         @media (max-width: 480px) {
@@ -171,7 +171,7 @@
             }
             /* Reducción del espacio entre encabezado y contenido en pantallas pequeñas */
             main {
-                margin-top: 90px; /* Espacio aún más pequeño entre el encabezado y el contenido */
+                margin-top: 100px; /* Espacio aún más pequeño entre el encabezado y el contenido */
             }
         }
     </style>
