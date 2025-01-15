@@ -126,6 +126,7 @@
         .carousel-track {
             display: flex;
             transition: transform 0.5s ease-in-out; /* Suaviza el movimiento */
+            justify-content: flex-start; /* Asegura que las imágenes estén alineadas al inicio por defecto */
         }
 
         .carousel img {
@@ -280,10 +281,17 @@
 
         function moveSlide(direction) {
             currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-            const newTransform = -currentIndex * 300; // 300px es el ancho de las imágenes
+            
+            // Calcula el desplazamiento, pero ajusta el valor para la última imagen
+            let newTransform = -currentIndex * 300; // 300px es el ancho de las imágenes
+            if (currentIndex === totalSlides - 1) {
+                newTransform = -(totalSlides - 1) * 300;  // Mover la última imagen a la derecha
+            }
+            
             document.querySelector('.carousel-track').style.transform = `translateX(${newTransform}px)`;
         }
     </script>
 </body>
 </html>
+
 
