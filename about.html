@@ -289,36 +289,16 @@
         const totalSlides = slides.length;
 
         function moveSlide(direction) {
-            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+            const newIndex = currentIndex + direction;
 
-            // Mover el carrusel
-            const newTransform = -currentIndex * 300; // 300px es el ancho de las imágenes
-            document.querySelector('.carousel-track').style.transition = 'transform 0.5s ease-in-out'; // Transition suave
-
-            document.querySelector('.carousel-track').style.transform = `translateX(${newTransform}px)`;
-
-            // Ajustar el índice cuando llegue al final
-            if (currentIndex === totalSlides - 1) {
-                setTimeout(() => {
-                    document.querySelector('.carousel-track').style.transition = 'none'; // Sin transición
-                    currentIndex = 0; // Volver al principio
-                    document.querySelector('.carousel-track').style.transform = `translateX(0px)`; // Mover al principio
-                }, 500); // Esperar a que termine la animación
-            }
-
-            // Ajustar el índice cuando llegue al inicio
-            if (currentIndex === 0) {
-                setTimeout(() => {
-                    document.querySelector('.carousel-track').style.transition = 'none'; // Sin transición
-                    currentIndex = totalSlides - 1; // Ir al final 
-                    document.querySelector('.carousel-track').style.transform = `translateX(${-currentIndex * 300}px)`; // Mover
-                }, 500); // Esperar a que termine la animación
+            if (newIndex >= 0 && newIndex < totalSlides) {
+                currentIndex = newIndex;
+                // Mover el carrusel
+                const newTransform = -currentIndex * 300; // 300px es el ancho de las imágenes
+                document.querySelector('.carousel-track').style.transition = 'transform 0.5s ease-in-out'; // Transition suave
+                document.querySelector('.carousel-track').style.transform = `translateX(${newTransform}px)`;
             }
         }
     </script>
 </body>
 </html>
-
-
-
-
