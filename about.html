@@ -289,8 +289,10 @@
         const totalSlides = slides.length;
 
         function moveSlide(direction) {
+            // Calcula el índice nuevo
             const newIndex = currentIndex + direction;
 
+            // Limitar el movimiento para que no pase de los bordes
             if (newIndex >= 0 && newIndex < totalSlides) {
                 currentIndex = newIndex;
                 // Mover el carrusel
@@ -302,3 +304,4 @@
     </script>
 </body>
 </html>
+
