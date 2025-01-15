@@ -310,7 +310,7 @@
             if (currentIndex === 0) {
                 setTimeout(() => {
                     document.querySelector('.carousel-track').style.transition = 'none'; // Sin transición
-                    currentIndex = totalSlides - 10; // Saltar las imágenes duplicadas
+                    currentIndex = 10; // Ir al final totalSlides - 10
                     document.querySelector('.carousel-track').style.transform = `translateX(${-currentIndex * 300}px)`; // Mover
                 }, 500); // Esperar a que termine la animación
             }
