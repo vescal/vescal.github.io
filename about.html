@@ -203,12 +203,23 @@
 
         @media (max-width: 480px) {
             .projects-container {
-                grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
-            }
-            /* Reducción del espacio entre encabezado y contenido en pantallas pequeñas */
-            main {
-                margin-top: 100px; /* Espacio aún más pequeño entre el encabezado y el contenido */
-            }
+        grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+    }
+
+    main {
+        margin-top: 100px; /* Espacio aún más pequeño entre el encabezado y el contenido */
+    }
+
+    .about-section {
+        flex-direction: column; /* Cambia de fila a columna */
+        text-align: center; /* Centra el contenido en dispositivos pequeños */
+    }
+
+    .about-section .about-text {
+        max-width: 100%; /* Permitir que el texto use todo el ancho disponible */
+        margin: 0 10px; /* Añadir márgenes pequeños para que no toque los bordes */
+        text-align: justify; /* Justificar texto */
+    }
         }
     </style>
 </head>
