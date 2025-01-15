@@ -290,7 +290,7 @@
         const carouselTrack = document.querySelector('.carousel-track');
         const slideWidth = slides[0].offsetWidth + 20; // Ancho de la imagen más el margen
 
-        // Centrar la primera imagen al cargar la página
+        // Calcula el desplazamiento inicial para centrar la primera imagen
         const initialOffset = (window.innerWidth - slideWidth) / 2;
         carouselTrack.style.transform = `translateX(${initialOffset}px)`;
 
@@ -306,8 +306,13 @@
 
                 // Calcula el desplazamiento para el carrusel
                 const newTransform = -currentIndex * slideWidth;
-                carouselTrack.style.transition = 'transform 0.5s ease-in-out'; // Transición suave
-                carouselTrack.style.transform = `translateX(${newTransform}px)`;
+
+                // Limita el desplazamiento para que la última imagen no se mueva más allá de la derecha
+                const maxTransform = -(totalSlides - 1) * slideWidth;
+                if (newTransform >= maxTransform) {
+                    carouselTrack.style.transition = 'transform 0.5s ease-in-out'; // Transición suave
+                    carouselTrack.style.transform = `translateX(${newTransform}px)`;
+                }
             }
         }
     </script>
