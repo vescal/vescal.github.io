@@ -6,38 +6,137 @@
     <meta name="robots" content="index,follow">
     <title>sobre mí | esca_lab</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/Logo.png">
+
     <style>
+        @font-face {
+            font-family: 'Helvetica';
+            src: url('https://raw.githubusercontent.com/vescal/vescal.github.io/Fonts/helvetica.woff') format('woff'),
+                 url('https://raw.githubusercontent.com/vescal/vescal.github.io/Fonts/helvetica-bold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         body {
             font-family: 'Helvetica', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #dddddd;
+            cursor: crosshair;
+            background-color: #dddddd; /* Color de fondo claro */
         }
 
+        /* Mantener el cursor como cruz en enlaces y botones */
+        a, button {
+            cursor: crosshair !important;
+        }
+
+        /* Redes sociales */
+        .social-links {
+            position: fixed;
+            top: 90px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 20; /* Se asegura de que esté visible por encima de todo */
+        }
+
+        .social-links a {
+            font-size: 24px;
+            color: #000000;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #b00000;
+        }
+
+        /* Encabezado */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%; /* Ancho completo */
+            background-color: rgba(255, 255, 255, 0); /* Fondo transparente */
+            color: #000000; /* Color del texto */
+            padding: 60px 0px; /* Superior/Inferior: 100px, Izquierda/Derecha: 0px */
+            text-align: center; /* Centra el texto horizontalmente */
+            z-index: 10; /* Asegura que esté encima de otros elementos */
+            cursor: crosshair !important;
+        }
+
+        header h1, header p {
+            margin: 0;
+            cursor: crosshair; /* Asegurar que los elementos internos también usen cruz */
+            font-size: 4rem;  /* Tamaño del texto */
+            font-weight: 800; /* Grosor más grueso */
+        }
+
+        /* Enlace del encabezado que redirige a YouTube */
+        header a {
+            text-decoration: none; /* Elimina el subrayado del enlace */
+            color: inherit; /* Mantiene el color del texto */
+        }
+
+        /* Ajustes para el contenido del cuerpo */
+        main {
+            margin-top: calc(100px + 30px); /* Altura del header + espacio adicional */
+        }
+
+        main p {
+            margin: 0;
+            cursor: crosshair; /* Asegurar que los elementos internos también usen cruz */
+            font-size: 2.5 rem;  /* Tamaño del texto */
+            font-weight: 400; /* Grosor más grueso */
+            padding: 30px 0px; /* Superior/Inferior: 100px, Izquierda/Derecha: 0px */
+        }
+
+        .about-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+            gap: 20px;
+        }
+
+        .about-section img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 0px;
+            box-shadow: 0 0px 80px rgba(0, 0, 0, 0);
+        }
+
+        .about-section .about-text {
+            max-width: 900px;
+            text-align: justify;
+            top: 30px; 
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* Carrusel */
         .carousel {
             position: relative;
             width: 100%;
-            max-width: 800px; /* Controla el ancho del visor */
-            margin: 0 auto;
             overflow: hidden;
-            display: flex;
-            justify-content: center; /* Centra las imágenes */
+            margin-top: 50px; /* Espacio superior */
         }
 
         .carousel-track {
             display: flex;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.5s ease-in-out; /* Suaviza el movimiento */
         }
 
         .carousel img {
             width: 300px;
             height: 300px;
             object-fit: cover;
-            margin: 0 10px;
-            border-radius: 10px;
+            margin: 10px;
+            border-radius: 0px;
         }
 
+        /* Controles del carrusel */
         .carousel-control {
             position: absolute;
             top: 50%;
@@ -47,7 +146,7 @@
             border: none;
             padding: 15px;
             cursor: pointer;
-            z-index: 20;
+            z-index: 20; /* Asegura que los botones estén encima del carrusel */
         }
 
         .prev {
@@ -58,33 +157,121 @@
             right: 10px;
         }
 
-        /* Diseño adaptativo */
+        /* Diseño adaptable */
         @media (max-width: 1080px) {
-            .carousel {
-                max-width: 600px;
+            .projects-container {
+                grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
+            }
+            main {
+                margin-top: 70px; /* Espacio aún más pequeño entre el encabezado y el contenido */
+            }
+
+            .social-links {
+                flex-direction: column; /* Cambiar a disposición vertical */
+                top: 30%; /* Ajustar la posición para evitar el encabezado */
+                right: 5%; /* Posición más cercana al borde derecho */
+                gap: 30px; /* Espacio entre los íconos */
+            }
+
+            header {
+                padding: 40px 0px; /* Ajusta el espacio del encabezado si es necesario */
+            }
+
+            .about-section {
+                flex-direction: column; /* Cambia de fila a columna */
+                text-align: center; /* Centra el contenido en dispositivos pequeños */
+                max-width: 100%;
+            }
+
+            .about-section img {
+                margin-bottom: 20px; /* Añade espacio entre la imagen y el texto */
+                max-width: 85%; /* Ajusta el tamaño de la imagen */
+            }
+
+            .about-section .about-text {
+                text-align: justify; /* Justifica el texto */
+                max-width: 85%; /* Aumenta el tamaño del texto a un 100% */
             }
         }
 
         @media (max-width: 480px) {
-            .carousel {
-                max-width: 100%;
+            .projects-container {
+                grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+            }
+
+            main {
+                margin-top: 100px; /* Espacio aún más pequeño entre el encabezado y el contenido */
+            }
+
+            .about-section {
+                flex-direction: column; /* Cambia de fila a columna */
+                text-align: center; /* Centra el contenido en dispositivos pequeños */
+            }
+
+            .about-section .about-text {
+                max-width: 85%; /* Permitir que el texto use todo el ancho disponible */
+                margin: 0px; /* Añadir márgenes pequeños para que no toque los bordes */
+                text-align: justify; /* Justificar texto */
             }
         }
     </style>
 </head>
 <body>
-    <div class="carousel">
-        <button class="carousel-control prev" onclick="moveSlide(-1)">&#10094;</button>
-        <div class="carousel-track">
-            <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 1">
-            <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 2">
-            <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 3">
-            <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 4">
-            <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 5">
-            <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 6">
-        </div>
-        <button class="carousel-control next" onclick="moveSlide(1)">&#10095;</button>
+    <!-- Redes sociales -->
+    <div class="social-links">
+        <a href="https://www.instagram.com/esca_lab_" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/víctor-lópez-escalonilla/" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="about.html" rel="noopener noreferrer">
+            <i class="fas fa-user"></i>
+        </a>
     </div>
+
+    <!-- Encabezado -->
+    <header>
+        <a href="https://vescal.github.io">
+            <h1>esca_lab</h1>
+        </a>
+        <p></p>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <section class="about-section">
+            <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/victorlopez_01.JPG" alt="Víctor López Escalonilla">
+            <div class="about-text">
+                <p>
+                    Me llamo Víctor López Escalonilla y soy arquitecto en Toledo, lugar donde vivo y desarrollo mi pasión por entender y transformar el mundo a través de la propia arquitectura...
+                </p>
+            </div>
+        </section>
+
+        <!-- Carrusel de imágenes -->
+        <div class="carousel">
+            <button class="carousel-control prev" onclick="moveSlide(-1)">&#10094;</button>
+            <div class="carousel-track">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 1">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 2">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 3">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 4">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 5">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 6">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 7">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 8">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 9">
+                <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Imagen 10">
+            </div>
+            <button class="carousel-control next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p></p>
+    </footer>
 
     <script>
         let currentIndex = 0;
@@ -93,8 +280,8 @@
 
         function moveSlide(direction) {
             currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-            const newTransform = -currentIndex * (slides[0].width + 20); // Ancho de las imágenes + margen
-            document.querySelector('.carousel-track').style.transform = `translateX(${newTransform}px)`;
+            const newTransform = -currentIndex * 300; // 300px es el ancho de las imágenes
+            document.querySelector('.carousel-track').style.transform = translateX(${newTransform}px);
         }
     </script>
 </body>
