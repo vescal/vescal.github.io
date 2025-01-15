@@ -292,11 +292,8 @@
 
         // Calcular el desplazamiento inicial para centrar la primera imagen
         window.onload = () => {
-            const centerIndex = Math.floor(totalSlides / 2);  // Índice de la imagen central
-            currentIndex = centerIndex;
-            const newTransform = -currentIndex * slideWidth;
-            carouselTrack.style.transition = 'none'; // Sin transición al cargar
-            carouselTrack.style.transform = `translateX(${newTransform}px)`;
+            const initialTransform = -Math.floor((window.innerWidth - slideWidth) / 2); 
+            carouselTrack.style.transform = `translateX(${initialTransform}px)`;
         };
 
         function moveSlide(direction) {
@@ -318,4 +315,5 @@
     </script>
 </body>
 </html>
+
 
