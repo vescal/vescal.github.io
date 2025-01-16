@@ -132,7 +132,7 @@
             width: 300px;
             height: 300px;
             object-fit: cover;
-            margin: 10%;
+            margin: 20px;
             border-radius: 0px;
         }
 
@@ -294,7 +294,7 @@
         const slides = document.querySelectorAll('.carousel img');
         const totalSlides = slides.length;
         const carouselTrack = document.querySelector('.carousel-track');
-        const slideWidth = slides[0].offsetWidth + 0; // Ancho de la imagen más el margen
+        const slideWidth = slides[0].offsetWidth + 40; // Ancho de la imagen más el margen
 
         function moveSlide(direction) {
             const maxIndex = totalSlides - 1;
