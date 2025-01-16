@@ -296,8 +296,8 @@
             // Calcula el índice nuevo
             const newIndex = currentIndex + direction;
 
-            // Limita el índice a que no pase de los extremos
-            if (newIndex >= 2 && newIndex <= maxIndex) {
+            // Limita el índice a que no pase de los extremos maxIndex
+            if (newIndex >= 0 && newIndex <= 3) {
                 currentIndex = newIndex;
 
                 // Calcula el desplazamiento para el carrusel
