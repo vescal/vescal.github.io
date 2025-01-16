@@ -290,9 +290,13 @@
         const totalSlides = slides.length;
         const carouselTrack = document.querySelector('.carousel-track');
         const slideWidth = slides[0].offsetWidth + 20; // Ancho de la imagen más el margen
-
+        
+//const maxIndex = totalSlides - 1;
         function moveSlide(direction) {
-            const maxIndex = totalSlides - 1;
+            const maxIndexMobile = 1; // Número máximo de slides visibles en móvil
+            const maxIndexDesktop = totalSlides - 1; // Número máximo en pantallas más grandes
+            const isMobile = window.innerWidth <= 480; // Detecta si la pantalla es móvil
+            const maxIndex = isMobile ? maxIndexMobile : maxIndexDesktop;
 
             // Calcula el índice nuevo
             const newIndex = currentIndex + direction;
