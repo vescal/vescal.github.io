@@ -290,20 +290,29 @@
         const totalSlides = slides.length;
         const carouselTrack = document.querySelector('.carousel-track');
         const slideWidth = slides[0].offsetWidth + 20; // Ancho de la imagen más el margen
-        
+
+        // Función para obtener el índice máximo dinámico según el tamaño de pantalla
+        function getMaxIndex() {
+            if (window.matchMedia("(max-width: 480px)").matches) {
+                return 2; // Solo muestra 3 fotos en dispositivos móviles (índices 0, 1, 2)
+            }
+            return totalSlides - 1; // Muestra todas las fotos en dispositivos más grandes
+        }
+
+        // Controla el movimiento del carrusel
         function moveSlide(direction) {
-            const maxIndex = totalSlides - 1;
+            const maxIndex = getMaxIndex();
 
             // Calcula el índice nuevo
             const newIndex = currentIndex + direction;
 
-            // Limita el índice a que no pase de los extremos maxIndex
-            if (newIndex >= 0 && newIndex <= 5) {
+            // Limita el índice a que no pase de los extremos
+            if (newIndex >= 0 && newIndex <= maxIndex) {
                 currentIndex = newIndex;
 
                 // Calcula el desplazamiento para el carrusel
                 const newTransform = -currentIndex * slideWidth;
-                carouselTrack.style.transition = 'transform 0.5s ease-in-out'; // Transición suave ${newTransform}px
+                carouselTrack.style.transition = 'transform 0.5s ease-in-out'; // Transición suave
                 carouselTrack.style.transform = `translateX(${newTransform}px)`;
             }
         }
