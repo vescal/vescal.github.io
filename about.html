@@ -291,12 +291,8 @@
         const carouselTrack = document.querySelector('.carousel-track');
         const slideWidth = slides[0].offsetWidth + 20; // Ancho de la imagen más el margen
 
-        // Función para determinar si es móvil
-        function isMobile() {
-            return window.innerWidth <= 480; // Cambia este valor según el breakpoint definido en tu media query
-            }
-         function moveSlide(direction) {
-            const maxIndex = isMobile() ? 3 : totalSlides - 1;
+        function moveSlide(direction) {
+            const maxIndex = totalSlides - 1;
 
             // Calcula el índice nuevo
             const newIndex = currentIndex + direction;
@@ -308,12 +304,11 @@
                 // Calcula el desplazamiento para el carrusel
                 const newTransform = -currentIndex * slideWidth;
                 carouselTrack.style.transition = 'transform 0.5s ease-in-out'; // Transición suave ${newTransform}px
-                carouselTrack.style.transform = `translateX(${newTransform}px)`;
+                carouselTrack.style.transform = translateX(${newTransform}px);
             }
         }
     </script>
 </body>
 </html>
-
 
 
