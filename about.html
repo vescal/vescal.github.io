@@ -291,17 +291,8 @@
         const carouselTrack = document.querySelector('.carousel-track');
         const slideWidth = slides[0].offsetWidth + 20; // Ancho de la imagen más el margen
 
-        // Función para obtener el índice máximo según el tamaño de la pantalla
-function getMaxIndex() {
-    if (window.innerWidth <= 768) {  // Versión móvil
-        return 10;  // 10 fotos como máximo
-    } else {  // Versión escritorio
-        return 5;  // 5 fotos como máximo
-    }
-}
-        
         function moveSlide(direction) {
-            const maxIndex = getMaxIndex();  // Obtener el máximo según la pantalla
+            const maxIndex = totalSlides - 1;
 
             // Calcula el índice nuevo
             const newIndex = currentIndex + direction;
@@ -319,6 +310,5 @@ function getMaxIndex() {
     </script>
 </body>
 </html>
-
 
 
