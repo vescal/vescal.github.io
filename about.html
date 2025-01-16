@@ -292,8 +292,8 @@
         const slideWidth = slides[0].offsetWidth + 20; // Ancho de la imagen más el margen
 
         function moveSlide(direction) {
-    const isMobile = window.matchMedia('(max-width: 1080px)').matches; // Detecta si es móvil
-    const maxIndex = isMobile ? 2 : totalSlides - 1; // Limita el índice en móvil a 3 imágenes
+    const isMobile = window.matchMedia('(max-width: 480px)').matches; // Detecta si es móvil
+    const maxIndex = isMobile ? 7 : totalSlides - 1; // Limita el índice en móvil a 8 imágenes
 
             // Calcula el índice nuevo
             const newIndex = currentIndex + direction;
