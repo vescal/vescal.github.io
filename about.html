@@ -290,6 +290,7 @@
         const totalSlides = slides.length;
         const carouselTrack = document.querySelector('.carousel-track');
         const slideWidth = slides[0].offsetWidth + 20; // Ancho de la imagen más el margen
+        const maxSlides = window.innerWidth <= 480 ? 10 : totalSlides - 1; // Si es móvil, máximo 10 imágenes
 
         function moveSlide(direction) {
             const maxIndex = totalSlides - 1;
