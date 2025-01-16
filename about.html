@@ -286,27 +286,28 @@
 
     <script>
         let currentIndex = 0;
-        const slides = document.querySelectorAll('.carousel img');
-        const totalSlides = slides.length;
-        const carouselTrack = document.querySelector('.carousel-track');
-        const slideWidth = slides[0].offsetWidth + 20; // Ancho de la imagen más el margen
+const slides = document.querySelectorAll('.carousel img');
+const totalSlides = slides.length;
+const carouselTrack = document.querySelector('.carousel-track');
+const slideWidth = slides[0].offsetWidth + 20; // Ancho de la imagen más el margen
 
-        function moveSlide(direction) {
-            const maxIndex = totalSlides - 1;
+function moveSlide(direction) {
+    const isMobile = window.matchMedia('(max-width: 480px)').matches; // Detecta si es móvil
+    const maxIndex = isMobile ? 2 : totalSlides - 1; // Limita el índice en móvil a 3 imágenes
 
-            // Calcula el índice nuevo
-            const newIndex = currentIndex + direction;
+    // Calcula el índice nuevo
+    const newIndex = currentIndex + direction;
 
-            // Limita el índice a que no pase de los extremos maxIndex
-            if (newIndex >= 0 && newIndex <= 5) {
-                currentIndex = newIndex;
+    // Limita el índice dentro del rango permitido
+    if (newIndex >= 0 && newIndex <= maxIndex) {
+        currentIndex = newIndex;
 
-                // Calcula el desplazamiento para el carrusel
-                const newTransform = -currentIndex * slideWidth;
-                carouselTrack.style.transition = 'transform 0.5s ease-in-out'; // Transición suave ${newTransform}px
-                carouselTrack.style.transform = `translateX(${newTransform}px)`;
-            }
-        }
+        // Calcula el desplazamiento para el carrusel
+        const newTransform = -currentIndex * slideWidth;
+        carouselTrack.style.transition = 'transform 0.5s ease-in-out'; // Transición suave
+        carouselTrack.style.transform = `translateX(${newTransform}px)`;
+    }
+}
     </script>
 </body>
 </html>
