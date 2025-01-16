@@ -297,13 +297,13 @@
             const newIndex = currentIndex + direction;
 
             // Limita el índice a que no pase de los extremos maxIndex
-            if (newIndex >= 0 && newIndex <= 3) {
+            if (newIndex >= 0 && newIndex <= 5) {
                 currentIndex = newIndex;
 
                 // Calcula el desplazamiento para el carrusel
                 const newTransform = -currentIndex * slideWidth;
-                carouselTrack.style.transition = 'transform 0.5s ease-in-out'; // Transición suave
-                carouselTrack.style.transform = `translateX(${newTransform}px)`;
+                carouselTrack.style.transition = 'transform 0.5s ease-in-out'; // Transición suave ${newTransform}px
+                carouselTrack.style.transform = `translateX(slides[0].offsetWidth + 20)`;
             }
         }
     </script>
