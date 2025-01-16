@@ -303,7 +303,7 @@
                 // Calcula el desplazamiento para el carrusel
                 const newTransform = -currentIndex * slideWidth;
                 carouselTrack.style.transition = 'transform 0.5s ease-in-out'; // Transición suave ${newTransform}px
-                carouselTrack.style.transform = `translateX(300px)`;
+                carouselTrack.style.transform = `translateX(${newTransform}px)`;
             }
         }
     </script>
