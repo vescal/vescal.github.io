@@ -331,7 +331,7 @@
             const observer = new IntersectionObserver(fadeInProjects, observerOptions);
 
             // Obtenemos todos los proyectos y comenzamos a observarlos
-            const projects = document.querySelectorAll('.project-title');
+            const projects = document.querySelectorAll('.project-title, .project-info, .project-description, .image-item');
             projects.forEach(project => {
                 observer.observe(project);
             });
