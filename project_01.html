@@ -115,6 +115,16 @@
             max-width: 80%;
             margin-left: auto;
             margin-right: auto;
+
+            opacity: 0; /* Inicialmente invisible */
+            transform: translateY(30px); /* Inicia desplazado hacia abajo */
+            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
+        }
+
+        /* Cuando el proyecto entra en la vista (se hace visible) */
+        .project-info.visible {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a la posición original */
         }
         
         /* Descripción del proyecto */
@@ -126,6 +136,16 @@
             max-width: 80%;
             margin-left: auto;   /* Centra el cuadro de texto */
             margin-right: auto;  /* Centra el cuadro de texto */
+
+            opacity: 0; /* Inicialmente invisible */
+            transform: translateY(30px); /* Inicia desplazado hacia abajo */
+            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
+        }
+
+        /* Cuando el proyecto entra en la vista (se hace visible) */
+        .project-description.visible {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a la posición original */
         }
 
         /* Contenedor de imágenes */
@@ -143,6 +163,16 @@
             overflow: hidden;
             background-color: #f0f0f0;
             border: 1px solid #ddd;
+
+            opacity: 0; /* Inicialmente invisible */
+            transform: translateY(30px); /* Inicia desplazado hacia abajo */
+            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
+        }
+
+        /* Cuando el proyecto entra en la vista (se hace visible) */
+        .image-item.visible {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a la posición original */
         }
 
         .image-item img {
