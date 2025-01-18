@@ -316,7 +316,18 @@
         const totalSlides = slides.length;
         const carouselTrack = document.querySelector('.carousel-track');
         const slideWidth = slides[0].offsetWidth + 0; // Ancho de la imagen más el margen
-
+        const hiddenElements = document.querySelectorAll('.hidden'); // Selecciona todos los elementos con la clase .hidden
+        const observerOptions = {threshold: 0.2,};
+        const observer = new IntersectionObserver((entries, observer) => {entries.forEach(entry => {
+           if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                entry.target.classList.remove('hidden');
+                observer.unobserve(entry.target); // Deja de observar el elemento
+            }
+        });
+    }, observerOptions);
+    hiddenElements.forEach(element => observer.observe(element));  // Observa cada elemento
+        
         function moveSlide(direction) {
             const maxIndex = totalSlides - 1;
 
@@ -333,27 +344,6 @@
                 carouselTrack.style.transform = `translateX(${newTransform}px)`;
                 }
             }
-
-        // Selecciona todos los elementos con la clase .hidden
-    const hiddenElements = document.querySelectorAll('.hidden');
-
-    // Configura el Intersection Observer
-    const observerOptions = {
-        threshold: 0.2, // Porcentaje de visibilidad requerido (20%)
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                entry.target.classList.remove('hidden');
-                observer.unobserve(entry.target); // Deja de observar el elemento
-            }
-        });
-    }, observerOptions);
-
-    // Observa cada elemento
-    hiddenElements.forEach(element => observer.observe(element));
     </script>
 </body>
 </html>
