@@ -109,10 +109,6 @@
             max-width: 80%;
             margin-left: auto;
             margin-right: auto;
-
-            opacity: 0; /* Inicialmente invisible */
-            transform: translateY(30px); /* Inicia desplazado hacia abajo */
-            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
         }
         
         /* Descripción del proyecto */
@@ -124,10 +120,6 @@
             max-width: 80%;
             margin-left: auto;   /* Centra el cuadro de texto */
             margin-right: auto;  /* Centra el cuadro de texto */
-
-            opacity: 0; /* Inicialmente invisible */
-            transform: translateY(30px); /* Inicia desplazado hacia abajo */
-            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
         }
 
         /* Contenedor de imágenes */
@@ -145,10 +137,6 @@
             overflow: hidden;
             background-color: #f0f0f0;
             border: 1px solid #ddd;
-
-            opacity: 0; /* Inicialmente invisible */
-            transform: translateY(30px); /* Inicia desplazado hacia abajo */
-            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
         }
 
         .image-item img {
@@ -307,7 +295,7 @@
             const observer = new IntersectionObserver(fadeInProjects, observerOptions);
 
             // Obtenemos todos los proyectos y comenzamos a observarlos
-            const projects = document.querySelectorAll('.project-title, .project-info, .project-description, .image-item');
+            const projects = document.querySelectorAll('.project-title');
             projects.forEach(project => {
                 observer.observe(project);
             });
