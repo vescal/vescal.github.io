@@ -157,17 +157,6 @@
             right: 2.5%;
         }
 
-        .hidden {
-            opacity: 0;
-            transform: translateY(20px); /* Movimiento inicial */
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .visible {
-            opacity: 1;
-            transform: translateY(0); /* Elemento en posición final */
-        }
-
 
         /* Diseño adaptable */
         @media (max-width: 1080px) {
@@ -266,7 +255,7 @@
 
     <!-- Contenido principal -->
     <main>
-        <section class="about-section hidden">
+        <section class="about-section">
             <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/victorlopez_01.JPG" alt="Víctor López Escalonilla">
             <div class="about-text">
                 <p>
@@ -316,17 +305,6 @@
         const totalSlides = slides.length;
         const carouselTrack = document.querySelector('.carousel-track');
         const slideWidth = slides[0].offsetWidth + 0; // Ancho de la imagen más el margen
-        const hiddenElements = document.querySelectorAll('.hidden'); // Selecciona todos los elementos con la clase .hidden
-        const observerOptions = {threshold: 0.2,};
-        const observer = new IntersectionObserver((entries, observer) => {entries.forEach(entry => {
-           if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                entry.target.classList.remove('hidden');
-                observer.unobserve(entry.target); // Deja de observar el elemento
-            }
-        });
-    }, observerOptions);
-    hiddenElements.forEach(element => observer.observe(element));  // Observa cada elemento
         
         function moveSlide(direction) {
             const maxIndex = totalSlides - 1;
