@@ -157,6 +157,18 @@
             right: 2.5%;
         }
 
+        .hidden {
+            opacity: 0;
+            transform: translateY(20px); /* Movimiento inicial */
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0); /* Elemento en posición final */
+        }
+
+
         /* Diseño adaptable */
         @media (max-width: 1080px) {
             .projects-container {
@@ -254,7 +266,7 @@
 
     <!-- Contenido principal -->
     <main>
-        <section class="about-section">
+        <section class="about-section hidden">
             <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/victorlopez_01.JPG" alt="Víctor López Escalonilla">
             <div class="about-text">
                 <p>
@@ -319,8 +331,29 @@
                 const newTransform = -currentIndex * slideWidth;
                 carouselTrack.style.transition = 'transform 0.5s ease-in-out'; // Transición suave ${newTransform}px
                 carouselTrack.style.transform = `translateX(${newTransform}px)`;
+                }
             }
-        }
+
+        // Selecciona todos los elementos con la clase .hidden
+    const hiddenElements = document.querySelectorAll('.hidden');
+
+    // Configura el Intersection Observer
+    const observerOptions = {
+        threshold: 0.2, // Porcentaje de visibilidad requerido (20%)
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                entry.target.classList.remove('hidden');
+                observer.unobserve(entry.target); // Deja de observar el elemento
+            }
+        });
+    }, observerOptions);
+
+    // Observa cada elemento
+    hiddenElements.forEach(element => observer.observe(element));
     </script>
 </body>
 </html>
