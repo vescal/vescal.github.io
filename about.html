@@ -98,6 +98,16 @@
             justify-content: center;
             padding: 50px;
             gap: 20px;
+
+            opacity: 0; /* Inicialmente invisible */
+            transform: translateY(30px); /* Inicia desplazado hacia abajo */
+            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
+        }
+
+        /* Cuando el proyecto entra en la vista (se hace visible) */
+        .about-section.visible {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a la posición original */
         }
 
         .about-section img {
@@ -322,6 +332,39 @@
                 carouselTrack.style.transform = `translateX(${newTransform}px)`;
                 }
             }
+
+        
+        // Esperamos a que la página cargue completamente
+        document.addEventListener('DOMContentLoaded', function() {
+            // Definimos las opciones del Intersection Observer
+            const observerOptions = {
+                root: null, // Usamos el viewport como referencia
+                rootMargin: '0px', // Sin margen adicional
+                threshold: 0.3 // El 50% del elemento debe estar visible para activar la animación
+            };
+
+            // Creamos una función callback que se ejecutará cuando los proyectos entren en el viewport
+            const fadeInProjects = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Si el proyecto entra en la vista, le agregamos la clase 'visible'
+                        entry.target.classList.add('visible');
+                    } else {
+                        // Si el proyecto sale de la vista, lo ocultamos de nuevo para el siguiente scroll
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            };
+
+            // Creamos el observer y le pasamos la función de callback y las opciones
+            const observer = new IntersectionObserver(fadeInProjects, observerOptions);
+
+            // Obtenemos todos los proyectos y comenzamos a observarlos
+            const projects = document.querySelectorAll('.about-section');
+            projects.forEach(project => {
+                observer.observe(project);
+            });
+        });
     </script>
 </body>
 </html>
