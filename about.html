@@ -98,6 +98,10 @@
             justify-content: center;
             padding: 50px;
             gap: 20px;
+
+            opacity: 0; /* Inicialmente invisible */
+            transform: translateY(30px); /* Inicia desplazado hacia abajo */
+            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
         }
 
         .about-section img {
