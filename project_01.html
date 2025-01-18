@@ -1,4 +1,4 @@
-t<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -202,8 +202,6 @@ t<!DOCTYPE html>
     max-height: 90%;
     object-fit: contain;
     cursor: grab;
-    transition: transform 0.25s ease;
-    position: 50%, 50%; /* Cambié el posicionamiento a relativo para que funcione bien en móviles */
 }
 
 /* Estilo para el texto (opcional) */
@@ -267,13 +265,6 @@ t<!DOCTYPE html>
             .project-description {
                 max-width: 80%;  /* Reduce el ancho del cuadro de texto en pantallas pequeñas */
             }
-
-            .modal-content {
-        width: 100%;
-        height: auto;
-        max-height: 80%;
-        margin: 10% auto; /* Centrado con márgenes */
-    }
         }
 
         @media (max-width: 480px) {
@@ -455,7 +446,7 @@ t<!DOCTYPE html>
         }
     });
 
-    // Función para arrastrar la imagen en dispositivos de escritorio
+    // Función para arrastrar la imagen
     modalImage.addEventListener('mousedown', function(e) {
         if (isZoomedIn) {
             isDragging = true;
@@ -466,32 +457,15 @@ t<!DOCTYPE html>
         }
     });
 
-    // Función para arrastrar la imagen en dispositivos táctiles
-    modalImage.addEventListener('touchstart', function(e) {
-        if (isZoomedIn) {
-            isDragging = true;
-            startX = e.touches[0].clientX - initialX;
-            startY = e.touches[0].clientY - initialY;
-            modalImage.style.cursor = 'grabbing'; // Cambiar el cursor al arrastrar
-            modalImage.style.transition = 'none'; // Desactivar las transiciones durante el arrastre
-        }
-    });
-
     window.addEventListener('mousemove', function(e) {
         if (isDragging) {
             e.preventDefault();
+            // Calculamos las nuevas posiciones
             initialX = e.clientX - startX;
             initialY = e.clientY - startY;
-            modalImage.style.transform = `scale(2) translate(${initialX}px, ${initialY}px)`;
-        }
-    });
 
-    window.addEventListener('touchmove', function(e) {
-        if (isDragging) {
-            e.preventDefault();
-            initialX = e.touches[0].clientX - startX;
-            initialY = e.touches[0].clientY - startY;
-            modalImage.style.transform = `scale(2) translate(${initialX}px, ${initialY}px)`;
+            // Aplicamos la transformación para mover la imagen mientras está ampliada
+            modalImage.style.transform = `scale(2) translate(${initialX}px, ${initialY}px)`; // Mover la imagen mientras está ampliada
         }
     });
 
@@ -502,20 +476,13 @@ t<!DOCTYPE html>
             modalImage.style.transition = 'transform 0.3s ease'; // Restaurar las transiciones
         }
     });
-
-    window.addEventListener('touchend', function() {
-        if (isZoomedIn) {
-            isDragging = false;
-            modalImage.style.cursor = 'grab'; // Restablecer el cursor
-            modalImage.style.transition = 'transform 0.3s ease'; // Restaurar las transiciones
-        }
-    });
 });
-
         
     </script>
 </body>
 </html>
+
+
 
 
 
