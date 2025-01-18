@@ -104,6 +104,12 @@
             transition: opacity 1s ease, transform 1s ease; /* Transición suave */
         }
 
+        /* Cuando el proyecto entra en la vista (se hace visible) */
+        .about-section.visible {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a la posición original */
+        }
+
         .about-section img {
             max-width: 300px;
             height: auto;
