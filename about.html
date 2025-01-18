@@ -131,6 +131,16 @@
             width: 100%;
             overflow: hidden;
             margin-top: 30px; /* Espacio superior */
+
+            opacity: 0; /* Inicialmente invisible */
+            transform: translateY(30px); /* Inicia desplazado hacia abajo */
+            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
+        }
+
+        /* Cuando el proyecto entra en la vista (se hace visible) */
+        .carousel.visible {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a la posición original */
         }
 
         .carousel-track {
@@ -360,7 +370,7 @@
             const observer = new IntersectionObserver(fadeInProjects, observerOptions);
 
             // Obtenemos todos los proyectos y comenzamos a observarlos
-            const projects = document.querySelectorAll('.about-section');
+            const projects = document.querySelectorAll('.about-section, .carousel');
             projects.forEach(project => {
                 observer.observe(project);
             });
