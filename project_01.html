@@ -391,13 +391,16 @@
     let zoomLevel = 1; // Nivel de zoom inicial
     let isDragging = false; // Para controlar el estado de arrastre
     let startX, startY; // Coordenadas iniciales del ratón para el desplazamiento
+    let offsetX = 0, offsetY = 0; // Desplazamiento acumulado para las coordenadas X e Y
 
     imageItems.forEach(item => {
         item.addEventListener('click', function() {
             imagePreview.style.display = 'flex';
             previewImg.src = item.src;
             zoomLevel = 1; // Resetear zoom cuando se abra una nueva imagen
-            previewImg.style.transform = `scale(${zoomLevel})`; // Resetear escala
+            previewImg.style.transform = `scale(${zoomLevel}) translate(0, 0)`; // Resetear escala y desplazamiento
+            offsetX = 0;
+            offsetY = 0;
         });
     });
 
@@ -421,7 +424,7 @@
         } else {
             zoomLevel = 1; // Zoom out
         }
-        previewImg.style.transform = `scale(${zoomLevel})`; // Aplicar el zoom
+        previewImg.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`; // Aplicar zoom y mantener la posición
     });
 
     // Funcionalidad de arrastrar para desplazar la imagen
@@ -437,12 +440,12 @@
             const deltaX = e.clientX - startX;
             const deltaY = e.clientY - startY;
 
-            // Desplazar la imagen en función del movimiento del ratón
-            const currentTransform = previewImg.style.transform.replace(/[^\d.-]/g, '').split(',');
-            const currentTranslateX = currentTransform[4] || 0;
-            const currentTranslateY = currentTransform[5] || 0;
+            // Acumulamos el desplazamiento
+            offsetX += deltaX;
+            offsetY += deltaY;
 
-            previewImg.style.transform = `scale(${zoomLevel}) translate(${parseFloat(currentTranslateX) + deltaX}px, ${parseFloat(currentTranslateY) + deltaY}px)`;
+            // Aplicamos el desplazamiento acumulado y el zoom
+            previewImg.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`;
 
             startX = e.clientX;
             startY = e.clientY;
