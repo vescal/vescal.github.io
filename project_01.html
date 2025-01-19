@@ -200,10 +200,11 @@
     max-height: 80%;
     object-fit: contain;
     cursor: grab;
-    transition: transform 0.25s ease; /* Transición al hacer zoom */
-    margin-top: 20%;
-    margin-bottom: 20%;
-    margin-left: 20%;
+    transition: transform 0.25s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra la imagen */
 }
 
 /* Estilo para el texto (opcional) */
@@ -468,7 +469,34 @@
         }
     });
 });
+
         
+        image.addEventListener('click', function () {
+    modal.style.display = 'block'; // Mostrar el modal
+    modalImage.src = image.src; // Asignar la imagen a la modal
+
+    // Esperar a que la imagen se cargue para obtener dimensiones reales
+    modalImage.onload = function () {
+        const windowWidth = window.innerWidth; // Ancho de la ventana
+        const windowHeight = window.innerHeight; // Alto de la ventana
+        const imageWidth = modalImage.naturalWidth; // Ancho real de la imagen
+        const imageHeight = modalImage.naturalHeight; // Alto real de la imagen
+
+        // Calcular escalado si es necesario
+        const scaleX = windowWidth * 0.8 / imageWidth;
+        const scaleY = windowHeight * 0.8 / imageHeight;
+        const scale = Math.min(scaleX, scaleY, 1); // Escala máxima para que quepa en la pantalla
+
+        // Centrar la imagen y escalar
+        modalImage.style.width = `${imageWidth * scale}px`; // Escalar ancho
+        modalImage.style.height = `${imageHeight * scale}px`; // Escalar alto
+        modalImage.style.transform = `translate(-50%, -50%)`; // Centrar
+        modalImage.style.top = '50%';
+        modalImage.style.left = '50%';
+        modalImage.style.position = 'absolute'; // Asegurarnos de que sea posicionable
+    };
+});
+
     </script>
 </body>
 </html>
