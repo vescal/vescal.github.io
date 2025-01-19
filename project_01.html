@@ -198,7 +198,7 @@
             justify-content: center;
             align-items: center;
             z-index: 1000; /* Asegura que esté por encima de todo */
-            cursor: grab; /* Hacer que el contenedor tenga un cursor de 'agarrar' */
+            cursor: zoom-in; /* Hacer que el contenedor tenga un cursor de 'agarrar' */
         }
 
         /* Estilo de la imagen de vista previa */
@@ -516,7 +516,7 @@
 
     document.addEventListener('mouseup', function() {
         isDragging = false;
-        imagePreview.style.cursor = 'zoom-in';
+        imagePreview.style.cursor = 'grab';
     });
 
             // Para arrastrar con el dedo (solo en móvil)
