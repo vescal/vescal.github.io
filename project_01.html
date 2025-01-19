@@ -200,6 +200,7 @@
     max-height: 80%; /* Ajusta la altura máxima de la imagen */
     object-fit: contain; /* Asegura que la imagen mantenga su proporción */
     transition: transform 0.3s ease; /* Transición suave para el zoom */
+    cursor: grab; /* Indica que la imagen puede ser arrastrada */
 }
 
 .close {
@@ -380,6 +381,8 @@
     const closePreview = document.getElementById('closePreview');
 
     let zoomLevel = 1; // Nivel de zoom inicial (sin zoom)
+    let isDragging = false; // Controla si la imagen está siendo arrastrada
+    let startX, startY, initialX, initialY;
             
     imageItems.forEach(item => {
         item.addEventListener('click', function() {
@@ -414,6 +417,29 @@
         }
         // Aplicar el zoom a la imagen
         previewImg.style.transform = `scale(${zoomLevel})`;
+    });
+
+        // Función para empezar a arrastrar
+        previewImg.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        startX = e.clientX - initialX;
+        startY = e.clientY - initialY;
+        previewImg.style.cursor = 'grabbing'; // Cambiar el cursor mientras se arrastra
+    });
+
+    // Función para arrastrar
+    document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+            initialX = e.clientX - startX;
+            initialY = e.clientY - startY;
+            previewImg.style.transform = `scale(${zoomLevel}) translate(${initialX}px, ${initialY}px)`; // Mover la imagen
+        }
+    });
+
+    // Función para dejar de arrastrar
+    document.addEventListener('mouseup', function() {
+        isDragging = false;
+        previewImg.style.cursor = 'grab'; // Cambiar el cursor cuando no se está arrastrando
     });
 });
 
