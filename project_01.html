@@ -490,6 +490,14 @@
         previewImg.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`;
     });
 
+            // Cambiar el cursor a 'grabbing' si el zoom es 2
+    if (zoomLevel === 2) {
+        imagePreview.style.cursor = 'grabbing';
+    } else {
+        imagePreview.style.cursor = 'grab';
+    }
+});
+
     previewImg.addEventListener('mousedown', function(e) {
         if (zoomLevel === 2) {
             isDragging = true;
