@@ -199,7 +199,6 @@
             max-width: 80%; /* Ajusta el tamaño máximo de la imagen */
             max-height: 80%; /* Ajusta la altura máxima de la imagen */
             object-fit: contain; /* Asegura que la imagen mantenga su proporción */
-            transition: transform 0.3s ease; /* Transición suave para el zoom */
         }
 
         .close {
@@ -398,51 +397,7 @@
             imagePreview.style.display = 'none';
         }
     });
-document.addEventListener('DOMContentLoaded', function() {
-    // Función para abrir la vista previa de la imagen
-    const imageItems = document.querySelectorAll('.image-item img');
-    const imagePreview = document.getElementById('imagePreview');
-    const previewImg = document.getElementById('previewImg');
-    const closePreview = document.getElementById('closePreview');
-
-    let zoomLevel = 1; // Nivel de zoom inicial (sin zoom)
-
-    imageItems.forEach(item => {
-        item.addEventListener('click', function() {
-            // Mostrar el contenedor de la vista previa y establecer la imagen
-            imagePreview.style.display = 'flex';
-            previewImg.src = item.src;
-            zoomLevel = 1; // Resetear el zoom al abrir la vista previa
-            previewImg.style.transform = `scale(${zoomLevel})`; // Restablecer al tamaño original
-        });
-    });
-
-    // Cerrar la vista previa al hacer clic en el botón de cerrar
-    closePreview.addEventListener('click', function() {
-        imagePreview.style.display = 'none';
-    });
-
-    // Cerrar la vista previa al hacer clic fuera de la imagen
-    imagePreview.addEventListener('click', function(event) {
-        if (event.target === imagePreview) {
-            imagePreview.style.display = 'none';
-        }
-    });
-
-    // Función para hacer zoom en la imagen con clic
-    previewImg.addEventListener('click', function() {
-        if (zoomLevel === 1) {
-            // Si el zoom está en 1 (tamaño normal), hacer zoom in
-            zoomLevel = 2;
-        } else if (zoomLevel === 2) {
-            // Si el zoom está en 2 (ampliado), hacer zoom out
-            zoomLevel = 1;
-        }
-        // Aplicar el zoom a la imagen
-        previewImg.style.transform = `scale(${zoomLevel})`;
-    });
 });
-
 
     </script>
 
@@ -454,6 +409,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
+
 
 
 
