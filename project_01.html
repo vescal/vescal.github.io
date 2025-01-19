@@ -490,9 +490,9 @@
         previewImg.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`;
 
         if (zoomLevel === 2) {
-        imagePreview.style.cursor = 'grabbing';
+        imagePreview.style.cursor = 'zoom-out';
     } else {
-        imagePreview.style.cursor = 'grab';
+        imagePreview.style.cursor = 'crosshair';
     }
     });
 
