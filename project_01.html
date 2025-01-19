@@ -390,110 +390,57 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('modal');
-    const modalImage = document.getElementById('modal-image');
-    const caption = document.getElementById('caption');
-    const closeBtn = document.getElementsByClassName('close')[0];
+       // Seleccionar elementos
+        const images = document.querySelectorAll('img'); // Todas las imágenes
+        const modal = document.getElementById('imageModal'); // Modal
+        const modalImage = document.getElementById('modalImage'); // Imagen dentro del modal
+        const closeModal = document.getElementById('closeModal'); // Botón cerrar
 
-    let isZoomedIn = false; // Variable para saber si la imagen está ampliada
-    let isDragging = false; // Variable para saber si estamos arrastrando la imagen
-    let startX, startY, initialX = 0, initialY = 0;
+        // Abrir modal al hacer clic en una imagen
+        images.forEach(image => {
+            image.addEventListener('click', function () {
+                modal.style.display = 'flex'; // Mostrar el modal
+                modalImage.src = image.src; // Asignar la imagen al modal
 
-    // Agregar evento de clic a cada imagen
-    const images = document.querySelectorAll('.image-item img');
-    images.forEach(image => {
-        image.addEventListener('click', function() {
-            modal.style.display = 'block'; // Mostrar la modal
-            modalImage.src = image.src; // Asignar la imagen a la modal
-            caption.textContent = image.alt; // Descripción de la imagen
-            isZoomedIn = false; // Reseteamos el estado de zoom
-            modalImage.style.transform = 'scale(1)'; // Restablecemos el tamaño original
-            modalImage.style.cursor = 'grab'; // Restablecemos el cursor
+                // Esperar a que la imagen cargue para calcular dimensiones
+                modalImage.onload = function () {
+                    const windowWidth = window.innerWidth; // Ancho de la ventana
+                    const windowHeight = window.innerHeight; // Alto de la ventana
+                    const imageWidth = modalImage.naturalWidth; // Ancho real de la imagen
+                    const imageHeight = modalImage.naturalHeight; // Alto real de la imagen
+
+                    // Calcular escala para que la imagen quepa en pantalla
+                    const scaleX = windowWidth * 0.8 / imageWidth;
+                    const scaleY = windowHeight * 0.8 / imageHeight;
+                    const scale = Math.min(scaleX, scaleY, 1); // Escala máxima
+
+                    // Dimensiones escaladas
+                    const scaledWidth = imageWidth * scale;
+                    const scaledHeight = imageHeight * scale;
+
+                    // Centrar el centro geométrico
+                    const offsetX = (scaledWidth / 2) - (windowWidth / 2);
+                    const offsetY = (scaledHeight / 2) - (windowHeight / 2);
+
+                    // Aplicar transformación
+                    modalImage.style.width = `${scaledWidth}px`;
+                    modalImage.style.height = `${scaledHeight}px`;
+                    modalImage.style.transform = `translate(${-offsetX}px, ${-offsetY}px)`;
+                };
+            });
         });
-    });
 
-    // Cerrar la modal cuando se haga clic en el botón de cerrar
-    closeBtn.addEventListener('click', function() {
-        modal.style.display = 'none';
-    });
+        // Cerrar modal al hacer clic en el botón de cerrar
+        closeModal.addEventListener('click', function () {
+            modal.style.display = 'none'; // Ocultar el modal
+        });
 
-    // Cerrar la modal si se hace clic fuera de la imagen (área sombreada)
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
-
-    // Función para hacer zoom
-    modalImage.addEventListener('click', function() {
-        if (isZoomedIn) {
-            modalImage.style.transform = 'scale(1)'; // Restablecer al tamaño normal
-            isZoomedIn = false;
-        } else {
-            modalImage.style.transform = 'scale(2)'; // Ampliar la imagen
-            isZoomedIn = true;
-        }
-    });
-
-    // Función para arrastrar la imagen
-    modalImage.addEventListener('mousedown', function(e) {
-        if (isZoomedIn) {
-            isDragging = true;
-            startX = e.clientX - initialX;
-            startY = e.clientY - initialY;
-            modalImage.style.cursor = 'grabbing'; // Cambiar el cursor al arrastrar
-            modalImage.style.transition = 'none'; // Desactivar las transiciones durante el arrastre
-        }
-    });
-
-    window.addEventListener('mousemove', function(e) {
-        if (isDragging) {
-            e.preventDefault();
-            // Calculamos las nuevas posiciones
-            initialX = e.clientX - startX;
-            initialY = e.clientY - startY;
-
-            // Aplicamos la transformación para mover la imagen mientras está ampliada
-            modalImage.style.transform = `scale(2) translate(${initialX}px, ${initialY}px)`; // Mover la imagen mientras está ampliada
-        }
-    });
-
-    window.addEventListener('mouseup', function() {
-        if (isZoomedIn) {
-            isDragging = false;
-            modalImage.style.cursor = 'grab'; // Restablecer el cursor
-            modalImage.style.transition = 'transform 0.3s ease'; // Restaurar las transiciones
-        }
-    });
-});
-
-        
-        image.addEventListener('click', function () {
-    modal.style.display = 'block'; // Mostrar el modal
-    modalImage.src = image.src; // Asignar la imagen a la modal
-
-    // Esperar a que la imagen se cargue para obtener dimensiones reales
-    modalImage.onload = function () {
-        const windowWidth = window.innerWidth; // Ancho de la ventana
-        const windowHeight = window.innerHeight; // Alto de la ventana
-        const imageWidth = modalImage.naturalWidth; // Ancho real de la imagen
-        const imageHeight = modalImage.naturalHeight; // Alto real de la imagen
-
-        // Calcular escalado si es necesario
-        const scaleX = windowWidth * 0.8 / imageWidth;
-        const scaleY = windowHeight * 0.8 / imageHeight;
-        const scale = Math.min(scaleX, scaleY, 1); // Escala máxima para que quepa en la pantalla
-
-        // Centrar la imagen y escalar
-        modalImage.style.width = `${imageWidth * scale}px`; // Escalar ancho
-        modalImage.style.height = `${imageHeight * scale}px`; // Escalar alto
-        modalImage.style.transform = `translate(-50%, -50%)`; // Centrar
-        modalImage.style.top = '50%';
-        modalImage.style.left = '50%';
-        modalImage.style.position = 'absolute'; // Asegurarnos de que sea posicionable
-    };
-});
+        // Cerrar modal al hacer clic fuera de la imagen
+        modal.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.style.display = 'none'; // Ocultar el modal
+            }
+        });
 
     </script>
 </body>
