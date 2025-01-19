@@ -196,16 +196,15 @@
 
 /* Estilo para la imagen ampliada dentro de la modal */
 .modal-content {
-    max-width: auto;
-    max-height: auto;
+    max-width: 80%;
+    max-height: 80%;
     object-fit: contain;
     cursor: grab;
-    transition: transform 0.25s ease; /* Transición al hacer zoom */
+    transition: transform 0.25s ease;
     position: absolute;
-    top: 20%;
-    left: 20%;
-    margin-right: 20%;
-    margin-bottom: 20%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra la imagen */
 }
 
 /* Estilo para el texto (opcional) */
