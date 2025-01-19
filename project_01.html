@@ -393,6 +393,9 @@
     let startX, startY; // Coordenadas iniciales del ratón para el desplazamiento
     let offsetX = 0, offsetY = 0; // Desplazamiento acumulado para las coordenadas X e Y
 
+    let lastClickTime = 0;
+    const doubleClickThreshold = 300; // Tiempo máximo entre clics para considerarlos rápidos (en milisegundos)
+            
     imageItems.forEach(item => {
         item.addEventListener('click', function() {
             imagePreview.style.display = 'flex';
@@ -401,6 +404,7 @@
             previewImg.style.transform = `scale(${zoomLevel}) translate(0, 0)`; // Resetear escala y desplazamiento
             offsetX = 0;
             offsetY = 0;
+            lastClickTime = 0; // Reiniciar tiempo al abrir una nueva imagen
         });
     });
 
