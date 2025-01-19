@@ -488,6 +488,12 @@
 
         lastClickTime = currentTime; // Actualizamos el tiempo del último clic
         previewImg.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`;
+
+        if (zoomLevel === 2) {
+        imagePreview.style.cursor = 'grabbing';
+    } else {
+        imagePreview.style.cursor = 'grab';
+    }
     });
 
     previewImg.addEventListener('mousedown', function(e) {
