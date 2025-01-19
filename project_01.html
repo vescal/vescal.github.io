@@ -193,12 +193,22 @@
             justify-content: center;
             align-items: center;
             z-index: 1000; /* Asegura que esté por encima de todo */
+            cursor: grab; /* Hacer que el contenedor tenga un cursor de 'agarrar' */
         }
 
+        /* Estilo de la imagen de vista previa */
         #previewImg {
-            max-width: 80%; /* Ajusta el tamaño máximo de la imagen */
-            max-height: 80%; /* Ajusta la altura máxima de la imagen */
-            object-fit: contain; /* Asegura que la imagen mantenga su proporción */
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease; /* Transición suave cuando se hace zoom */
+            cursor: pointer; /* Mostrar el cursor de 'apretar' cuando se hace clic en la imagen */
+
+        }
+
+        /* Hacer que el contenedor de imagen cambie de cursor cuando se agarra */
+        .image-preview:active {
+            cursor: grabbing;
         }
 
         .close {
@@ -373,31 +383,78 @@
 
             // Función para abrir la vista previa de la imagen
         document.addEventListener('DOMContentLoaded', function() {
-            const imageItems = document.querySelectorAll('.image-item img');
-            const imagePreview = document.getElementById('imagePreview');
-            const previewImg = document.getElementById('previewImg');
-            const closePreview = document.getElementById('closePreview');
+    const imageItems = document.querySelectorAll('.image-item img');
+    const imagePreview = document.getElementById('imagePreview');
+    const previewImg = document.getElementById('previewImg');
+    const closePreview = document.getElementById('closePreview');
 
-        imageItems.forEach(item => {
-            item.addEventListener('click', function() {
-            // Mostrar el contenedor de la vista previa y establecer la imagen
+    let zoomLevel = 1; // Nivel de zoom inicial
+    let isDragging = false; // Para controlar el estado de arrastre
+    let startX, startY; // Coordenadas iniciales del ratón para el desplazamiento
+
+    imageItems.forEach(item => {
+        item.addEventListener('click', function() {
             imagePreview.style.display = 'flex';
             previewImg.src = item.src;
+            zoomLevel = 1; // Resetear zoom cuando se abra una nueva imagen
+            previewImg.style.transform = `scale(${zoomLevel})`; // Resetear escala
         });
     });
 
-            // Cerrar la vista previa al hacer clic en el botón de cerrar
-        closePreview.addEventListener('click', function() {
+    // Cerrar la vista previa al hacer clic en el botón de cerrar
+    closePreview.addEventListener('click', function() {
         imagePreview.style.display = 'none';
     });
 
-            // Cerrar la vista previa al hacer clic fuera de la imagen
-        imagePreview.addEventListener('click', function(event) {
+    // Cerrar la vista previa al hacer clic fuera de la imagen
+    imagePreview.addEventListener('click', function(event) {
         if (event.target === imagePreview) {
             imagePreview.style.display = 'none';
         }
     });
+
+    // Hacer zoom in y zoom out al hacer clic en la imagen
+    previewImg.addEventListener('click', function() {
+        // Alternar entre zoom in y zoom out
+        if (zoomLevel === 1) {
+            zoomLevel = 2; // Zoom in
+        } else {
+            zoomLevel = 1; // Zoom out
+        }
+        previewImg.style.transform = `scale(${zoomLevel})`; // Aplicar el zoom
+    });
+
+    // Funcionalidad de arrastrar para desplazar la imagen
+    previewImg.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        imagePreview.style.cursor = 'grabbing'; // Cambiar el cursor cuando se está arrastrando
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+            const deltaX = e.clientX - startX;
+            const deltaY = e.clientY - startY;
+
+            // Desplazar la imagen en función del movimiento del ratón
+            const currentTransform = previewImg.style.transform.replace(/[^\d.-]/g, '').split(',');
+            const currentTranslateX = currentTransform[4] || 0;
+            const currentTranslateY = currentTransform[5] || 0;
+
+            previewImg.style.transform = `scale(${zoomLevel}) translate(${parseFloat(currentTranslateX) + deltaX}px, ${parseFloat(currentTranslateY) + deltaY}px)`;
+
+            startX = e.clientX;
+            startY = e.clientY;
+        }
+    });
+
+    document.addEventListener('mouseup', function() {
+        isDragging = false;
+        imagePreview.style.cursor = 'grab'; // Cambiar el cursor cuando ya no se está arrastrando
+    });
 });
+
 
     </script>
 
