@@ -392,84 +392,39 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('modal');
-    const modalImage = document.getElementById('modal-image');
-    const caption = document.getElementById('caption');
-    const closeBtn = document.getElementsByClassName('close')[0];
+    document.addEventListener('DOMContentLoaded', function () {
+    const image = document.querySelector('.your-image-class'); // Cambia por el selector de tu imagen
+    const modal = document.querySelector('.your-modal-class'); // Cambia por el selector de tu modal
+    const modalImage = document.querySelector('.modal-content'); // Cambia por el selector de tu imagen en el modal
 
-    let isZoomedIn = false; // Variable para saber si la imagen está ampliada
-    let isDragging = false; // Variable para saber si estamos arrastrando la imagen
-    let startX, startY, initialX = 0, initialY = 0;
+    image.addEventListener('click', function () {
+        modal.style.display = 'block';
+        modalImage.src = image.src;
 
-    // Agregar evento de clic a cada imagen
-    const images = document.querySelectorAll('.image-item img');
-    images.forEach(image => {
-        image.addEventListener('click', function() {
-            modal.style.display = 'block'; // Mostrar la modal
-            modalImage.src = image.src; // Asignar la imagen a la modal
-            caption.textContent = image.alt; // Descripción de la imagen
-            isZoomedIn = false; // Reseteamos el estado de zoom
-            modalImage.style.transform = 'scale(1)'; // Restablecemos el tamaño original
-            modalImage.style.cursor = 'grab'; // Restablecemos el cursor
-        });
+        modalImage.onload = function () {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const imageWidth = modalImage.naturalWidth;
+            const imageHeight = modalImage.naturalHeight;
+
+            const scaleX = windowWidth * 0.8 / imageWidth;
+            const scaleY = windowHeight * 0.8 / imageHeight;
+            const scale = Math.min(scaleX, scaleY, 1);
+
+            modalImage.style.width = `${imageWidth * scale}px`;
+            modalImage.style.height = `${imageHeight * scale}px`;
+            modalImage.style.transform = `translate(-50%, -50%)`;
+            modalImage.style.top = '50%';
+            modalImage.style.left = '50%';
+            modalImage.style.position = 'absolute';
+        };
     });
 
-    // Cerrar la modal cuando se haga clic en el botón de cerrar
-    closeBtn.addEventListener('click', function() {
+    modal.addEventListener('click', function () {
         modal.style.display = 'none';
     });
-
-    // Cerrar la modal si se hace clic fuera de la imagen (área sombreada)
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
-
-    // Función para hacer zoom
-    modalImage.addEventListener('click', function() {
-        if (isZoomedIn) {
-            modalImage.style.transform = 'scale(1)'; // Restablecer al tamaño normal
-            isZoomedIn = false;
-        } else {
-            modalImage.style.transform = 'scale(2)'; // Ampliar la imagen
-            isZoomedIn = true;
-        }
-    });
-
-    // Función para arrastrar la imagen
-    modalImage.addEventListener('mousedown', function(e) {
-        if (isZoomedIn) {
-            isDragging = true;
-            startX = e.clientX - initialX;
-            startY = e.clientY - initialY;
-            modalImage.style.cursor = 'grabbing'; // Cambiar el cursor al arrastrar
-            modalImage.style.transition = 'none'; // Desactivar las transiciones durante el arrastre
-        }
-    });
-
-    window.addEventListener('mousemove', function(e) {
-        if (isDragging) {
-            e.preventDefault();
-            // Calculamos las nuevas posiciones
-            initialX = e.clientX - startX;
-            initialY = e.clientY - startY;
-
-            // Aplicamos la transformación para mover la imagen mientras está ampliada
-            modalImage.style.transform = `scale(2) translate(${initialX}px, ${initialY}px)`; // Mover la imagen mientras está ampliada
-        }
-    });
-
-    window.addEventListener('mouseup', function() {
-        if (isZoomedIn) {
-            isDragging = false;
-            modalImage.style.cursor = 'grab'; // Restablecer el cursor
-            modalImage.style.transition = 'transform 0.3s ease'; // Restaurar las transiciones
-        }
-    });
 });
-        
+
     </script>
 </body>
 </html>
