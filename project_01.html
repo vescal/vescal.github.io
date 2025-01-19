@@ -382,8 +382,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const closePreview = document.getElementById('closePreview');
 
     let zoomLevel = 1; // Nivel de zoom inicial (sin zoom)
-    let isDragging = false; // Controla si la imagen está siendo arrastrada
-    let startX, startY, initialX, initialY;
+    let isDragging = false; // Estado para saber si se está arrastrando la imagen
+    let startX, startY; // Coordenadas de inicio para el arrastre
+    let offsetX = 0, offsetY = 0; // Desplazamiento de la imagen
 
     imageItems.forEach(item => {
         item.addEventListener('click', function() {
@@ -392,6 +393,8 @@ document.addEventListener('DOMContentLoaded', function() {
             previewImg.src = item.src;
             zoomLevel = 1; // Resetear el zoom al abrir la vista previa
             previewImg.style.transform = `scale(${zoomLevel})`; // Restablecer al tamaño original
+            previewImg.style.left = '0px'; // Restablecer la posición de la imagen
+            previewImg.style.top = '0px';  // Restablecer la posición de la imagen
         });
     });
 
@@ -420,27 +423,33 @@ document.addEventListener('DOMContentLoaded', function() {
         previewImg.style.transform = `scale(${zoomLevel})`;
     });
 
-    // Función para empezar a arrastrar
-    previewImg.addEventListener('mousedown', function(e) {
-        isDragging = true;
-        startX = e.clientX - initialX;
-        startY = e.clientY - initialY;
-        previewImg.style.cursor = 'grabbing'; // Cambiar el cursor mientras se arrastra
-    });
-
-    // Función para arrastrar
-    document.addEventListener('mousemove', function(e) {
-        if (isDragging) {
-            initialX = e.clientX - startX;
-            initialY = e.clientY - startY;
-            previewImg.style.transform = `scale(${zoomLevel}) translate(${initialX}px, ${initialY}px)`; // Mover la imagen
+    // Habilitar la funcionalidad de arrastre
+    previewImg.addEventListener('mousedown', function(event) {
+        if (zoomLevel > 1) { // Solo permitir arrastre cuando la imagen esté ampliada
+            isDragging = true;
+            startX = event.clientX - offsetX;
+            startY = event.clientY - offsetY;
+            previewImg.style.cursor = 'grabbing'; // Cambiar cursor para indicar arrastre
         }
     });
 
-    // Función para dejar de arrastrar
+    document.addEventListener('mousemove', function(event) {
+        if (isDragging) {
+            event.preventDefault(); // Prevenir selección de texto u otros eventos
+
+            // Calcular el nuevo desplazamiento
+            offsetX = event.clientX - startX;
+            offsetY = event.clientY - startY;
+
+            // Mover la imagen
+            previewImg.style.left = `${offsetX}px`;
+            previewImg.style.top = `${offsetY}px`;
+        }
+    });
+
     document.addEventListener('mouseup', function() {
-        isDragging = false;
-        previewImg.style.cursor = 'grab'; // Cambiar el cursor cuando no se está arrastrando
+        isDragging = false; // Desactivar el arrastre
+        previewImg.style.cursor = 'grab'; // Volver a la apariencia normal del cursor
     });
 });
         
