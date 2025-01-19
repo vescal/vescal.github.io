@@ -373,7 +373,8 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        
+document.addEventListener('DOMContentLoaded', function() {
     // Función para abrir la vista previa de la imagen
     const imageItems = document.querySelectorAll('.image-item img');
     const imagePreview = document.getElementById('imagePreview');
@@ -383,7 +384,7 @@
     let zoomLevel = 1; // Nivel de zoom inicial (sin zoom)
     let isDragging = false; // Controla si la imagen está siendo arrastrada
     let startX, startY, initialX, initialY;
-            
+
     imageItems.forEach(item => {
         item.addEventListener('click', function() {
             // Mostrar el contenedor de la vista previa y establecer la imagen
@@ -419,8 +420,8 @@
         previewImg.style.transform = `scale(${zoomLevel})`;
     });
 
-        // Función para empezar a arrastrar
-        previewImg.addEventListener('mousedown', function(e) {
+    // Función para empezar a arrastrar
+    previewImg.addEventListener('mousedown', function(e) {
         isDragging = true;
         startX = e.clientX - initialX;
         startY = e.clientY - initialY;
@@ -442,7 +443,7 @@
         previewImg.style.cursor = 'grab'; // Cambiar el cursor cuando no se está arrastrando
     });
 });
-
+        
     </script>
 
     <!-- Contenedor de vista previa de la imagen -->
