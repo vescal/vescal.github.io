@@ -181,41 +181,39 @@
             object-fit: contain; /* Ajusta la imagen para que se vea con su proporción */
         }
 
-/* Estilos para la vista previa de la imagen */
-.image-preview {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Asegura que esté encima de otros elementos */
-}
+        /* Estilos para la vista previa de la imagen */
+        .image-preview {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Asegura que esté por encima de todo */
+        }
 
-#previewImg {
-    position: absolute; /* Necesitamos posición absoluta para moverla */
-    max-width: 90%; /* Limita el tamaño de la imagen */
-    max-height: 90%; /* Limita el tamaño de la imagen */
-    cursor: grab; /* Muestra un cursor de agarre cuando no se está moviendo */
-    transition: transform 0.3s ease;
-}
+        #previewImg {
+            max-width: 80%; /* Ajusta el tamaño máximo de la imagen */
+            max-height: 80%; /* Ajusta la altura máxima de la imagen */
+            object-fit: contain; /* Asegura que la imagen mantenga su proporción */
+        }
 
-.close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    z-index: 10;
-}
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
+        }
 
-.close:hover {
-    color: #ff0000; /* Rojo al pasar el ratón */
-}
+        .close:hover {
+            color: #ff0000; /* Rojo al pasar el ratón */
+        }
 
         /* Diseño adaptable */
         @media (max-width: 1080px) {
@@ -373,86 +371,34 @@
             });
         });
 
-        
-document.addEventListener('DOMContentLoaded', function() {
-    // Función para abrir la vista previa de la imagen
-    const imageItems = document.querySelectorAll('.image-item img');
-    const imagePreview = document.getElementById('imagePreview');
-    const previewImg = document.getElementById('previewImg');
-    const closePreview = document.getElementById('closePreview');
+            // Función para abrir la vista previa de la imagen
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageItems = document.querySelectorAll('.image-item img');
+            const imagePreview = document.getElementById('imagePreview');
+            const previewImg = document.getElementById('previewImg');
+            const closePreview = document.getElementById('closePreview');
 
-    let zoomLevel = 1; // Nivel de zoom inicial (sin zoom)
-    let isDragging = false; // Estado para saber si se está arrastrando la imagen
-    let startX, startY; // Coordenadas de inicio para el arrastre
-    let offsetX = 0, offsetY = 0; // Desplazamiento de la imagen
-
-    imageItems.forEach(item => {
-        item.addEventListener('click', function() {
+        imageItems.forEach(item => {
+            item.addEventListener('click', function() {
             // Mostrar el contenedor de la vista previa y establecer la imagen
             imagePreview.style.display = 'flex';
             previewImg.src = item.src;
-            zoomLevel = 1; // Resetear el zoom al abrir la vista previa
-            previewImg.style.transform = `scale(${zoomLevel})`; // Restablecer al tamaño original
-            previewImg.style.left = '0px'; // Restablecer la posición de la imagen
-            previewImg.style.top = '0px';  // Restablecer la posición de la imagen
         });
     });
 
-    // Cerrar la vista previa al hacer clic en el botón de cerrar
-    closePreview.addEventListener('click', function() {
+            // Cerrar la vista previa al hacer clic en el botón de cerrar
+        closePreview.addEventListener('click', function() {
         imagePreview.style.display = 'none';
     });
 
-    // Cerrar la vista previa al hacer clic fuera de la imagen
-    imagePreview.addEventListener('click', function(event) {
+            // Cerrar la vista previa al hacer clic fuera de la imagen
+        imagePreview.addEventListener('click', function(event) {
         if (event.target === imagePreview) {
             imagePreview.style.display = 'none';
         }
     });
-
-    // Función para hacer zoom en la imagen con clic
-    previewImg.addEventListener('click', function() {
-        if (zoomLevel === 1) {
-            // Si el zoom está en 1 (tamaño normal), hacer zoom in
-            zoomLevel = 2;
-        } else if (zoomLevel === 2) {
-            // Si el zoom está en 2 (ampliado), hacer zoom out
-            zoomLevel = 1;
-        }
-        // Aplicar el zoom a la imagen
-        previewImg.style.transform = `scale(${zoomLevel})`;
-    });
-
-    // Habilitar la funcionalidad de arrastre
-    previewImg.addEventListener('mousedown', function(event) {
-        if (zoomLevel > 1) { // Solo permitir arrastre cuando la imagen esté ampliada
-            isDragging = true;
-            startX = event.clientX - offsetX;
-            startY = event.clientY - offsetY;
-            previewImg.style.cursor = 'grabbing'; // Cambiar cursor para indicar arrastre
-        }
-    });
-
-    document.addEventListener('mousemove', function(event) {
-        if (isDragging) {
-            event.preventDefault(); // Prevenir selección de texto u otros eventos
-
-            // Calcular el nuevo desplazamiento
-            offsetX = event.clientX - startX;
-            offsetY = event.clientY - startY;
-
-            // Mover la imagen
-            previewImg.style.left = `${offsetX}px`;
-            previewImg.style.top = `${offsetY}px`;
-        }
-    });
-
-    document.addEventListener('mouseup', function() {
-        isDragging = false; // Desactivar el arrastre
-        previewImg.style.cursor = 'grab'; // Volver a la apariencia normal del cursor
-    });
 });
-        
+
     </script>
 
     <!-- Contenedor de vista previa de la imagen -->
@@ -463,6 +409,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
+
 
 
 
