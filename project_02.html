@@ -233,7 +233,7 @@
         /* Diseño adaptable */
         @media (max-width: 1080px) {
             .projects-container {
-                grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
+            grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
             }
 
              main {
@@ -261,12 +261,13 @@
             }
             .images-container {
             max-width: 80%; /* Reduce aún más el ancho en pantallas muy pequeñas */
+            grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
             }
         }
 
         @media (max-width: 480px) {
             .projects-container {
-                grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+            grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
             }
 
             .project-title {
@@ -282,10 +283,11 @@
             }
             .images-container {
             max-width: 65%; /* Reduce aún más el ancho en pantallas muy pequeñas */
+            grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
             }
             /* Reducción del espacio entre encabezado y contenido en pantallas pequeñas */
             main {
-                margin-top: 150px; /* Espacio aún más pequeño entre el encabezado y el contenido */
+            margin-top: 150px; /* Espacio aún más pequeño entre el encabezado y el contenido */
             }
         }
     </style>
