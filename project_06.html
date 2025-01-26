@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="robots" content="index,follow">
+    <title>stool mies van der rohe | esca_lab</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/Logo.png">
+
+    <style>
+        @font-face {
+            font-family: 'Helvetica';
+            src: url('https://raw.githubusercontent.com/vescal/vescal.github.io/Fonts/helvetica.woff') format('woff'),
+                 url('https://raw.githubusercontent.com/vescal/vescal.github.io/Fonts/helvetica-bold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Helvetica', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            cursor: crosshair;
+            background-color: #dddddd; /* Color de fondo claro */
+        }
+
+        /* Mantener el cursor como cruz en enlaces y botones */
+        a, button {
+            cursor: crosshair !important;
+        }
+
+        /* Redes sociales */
+        .social-links {
+            position: fixed;
+            top: 90px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 20; /* Se asegura de que esté visible por encima de todo */
+        }
+
+        .social-links a {
+            font-size: 24px;
+            color: #000000;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #b00000;
+        }
+
+        /* Encabezado */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%; /* Ancho completo */
+            background-color: rgba(255, 255, 255, 0); /* Fondo transparente */
+            color: #000000; /* Color del texto */
+            padding: 60px 0px; /* Superior/Inferior: 100px, Izquierda/Derecha: 0px */
+            text-align: center; /* Centra el texto horizontalmente */
+            z-index: 10; /* Asegura que esté encima de otros elementos */
+            cursor: crosshair !important;
+        }
+
+        header h1 {
+            margin: 0;
+            cursor: crosshair; /* Asegurar que los elementos internos también usen cruz */
+            font-size: 4rem;  /* Tamaño del texto */
+            font-weight: 800; /* Grosor más grueso */
+        }
+
+        /* Enlace del encabezado que redirige a YouTube */
+        header a {
+            text-decoration: none; /* Elimina el subrayado del enlace */
+            color: inherit; /* Mantiene el color del texto */
+        }
+
+        /* Ajustes para el contenido del cuerpo */
+        main {
+            margin-top: calc(100px + 90px); /* Altura del header + espacio adicional */
+        }
+
+        /* Título del proyecto */
+        .project-title {
+            font-size: 2rem; /* Tamaño de fuente para el título */
+            font-weight: bold; /* Negrita */
+            text-align: left; /* Alineación a la izquierda */
+            margin-bottom: 15px; /* Espacio inferior */
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+
+            opacity: 0; /* Inicialmente invisible */
+            transform: translateY(30px); /* Inicia desplazado hacia abajo */
+            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
+        }
+
+        /* Cuando el proyecto entra en la vista (se hace visible) */
+        .project-title.visible {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a la posición original */
+        }
+
+        /* Datos del proyecto */
+        .project-info {
+            font-size: 1.2rem; /* Tamaño de fuente para los datos */
+            font-weight: bold; /* Negrita */
+            text-align: left; /* Alineación a la izquierda */
+            margin-bottom: 15px; /* Espacio inferior */
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+
+            opacity: 0; /* Inicialmente invisible */
+            transform: translateY(30px); /* Inicia desplazado hacia abajo */
+            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
+        }
+
+        /* Cuando el proyecto entra en la vista (se hace visible) */
+        .project-info.visible {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a la posición original */
+        }
+        
+        /* Descripción del proyecto */
+        .project-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: justify; /* Justifica el texto horizontalmente */
+            margin-bottom: 30px;
+            max-width: 80%;
+            margin-left: auto;   /* Centra el cuadro de texto */
+            margin-right: auto;  /* Centra el cuadro de texto */
+
+            opacity: 0; /* Inicialmente invisible */
+            transform: translateY(30px); /* Inicia desplazado hacia abajo */
+            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
+        }
+
+        /* Cuando el proyecto entra en la vista (se hace visible) */
+        .project-description.visible {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a la posición original */
+        }
+
+        /* Contenedor de imágenes */
+        .images-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Cuatro columnas. repeat(auto-fit, minmax(250px, 1fr)); para ajustar columnas automáticamente */
+            gap: 30px;
+            margin: 15px auto 30px auto;
+            max-width: 80%;
+        }
+
+        .image-item {
+            position: relative;
+            overflow: hidden;
+            background-color: none;
+            border: none;
+
+            opacity: 0; /* Inicialmente invisible */
+            transform: translateY(30px); /* Inicia desplazado hacia abajo */
+            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
+
+            display: flex; /* Habilita el diseño flexbox */
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center; /* Centra verticalmente */
+
+            aspect-ratio: 1 / 1; /* Hace que cada elemento sea cuadrado */
+        }
+
+        /* Cuando el proyecto entra en la vista (se hace visible) */
+        .image-item.visible {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a la posición original */
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ajusta la imagen para que se vea con su proporción */
+        }
+
+        /* Estilos para la vista previa de la imagen */
+        .image-preview {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Asegura que esté por encima de todo */
+            cursor: grab; /* Hacer que el contenedor tenga un cursor de 'agarrar' */
+        }
+
+        /* Estilo de la imagen de vista previa */
+        #previewImg {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease; /* Transición suave cuando se hace zoom */
+            cursor: zoom-in; /* Mostrar el cursor de 'apretar' cuando se hace clic en la imagen */
+
+        }
+
+        /* Hacer que el contenedor de imagen cambie de cursor cuando se agarra */
+        .image-preview:active {
+            cursor: grabbing;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .close:hover {
+            color: #ff0000; /* Rojo al pasar el ratón */
+        }
+
+        /* Diseño adaptable */
+        @media (max-width: 1080px) {
+            main {
+            margin-top: 150px; /* Reducido el espacio entre el encabezado y el contenido */
+            }
+            .social-links {
+            flex-direction: column; /* Cambiar a disposición vertical */
+            top: 30%; /* Ajustar la posición para evitar el encabezado */
+            right: 5%; /* Posición más cercana al borde derecho */
+            gap: 30px; /* Espacio entre los íconos */
+            }
+
+            header {
+            padding: 40px 0px; /* Ajusta el espacio del encabezado si es necesario */
+            }
+
+            .project-title {
+            max-width: 80%;  /* Reduce el ancho del cuadro de texto en pantallas pequeñas */
+            }
+            .project-info {
+            max-width: 80%;  /* Reduce el ancho del cuadro de texto en pantallas pequeñas */
+            }
+            .project-description {
+            max-width: 80%;  /* Reduce el ancho del cuadro de texto en pantallas pequeñas */
+            text-align: justify; /* Justifica el texto */
+            }
+            .images-container {
+            max-width: 80%; /* Reduce aún más el ancho en pantallas muy pequeñas */
+            grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
+            }
+        }
+
+        @media (max-width: 480px) {
+            main {
+            margin-top: 150px; /* Reducción del espacio entre encabezado y contenido en pantallas pequeñas*/
+            }
+            .project-title {
+            max-width: 65%;  /* Reduce el ancho del cuadro de texto en pantallas pequeñas */
+            }
+            .project-info {
+            max-width: 65%;  /* Reduce el ancho del cuadro de texto en pantallas pequeñas */
+            text-align: left; /* Justifica el texto a la izquierda */
+            margin: 0 auto; /* Centra el cuadro de texto horizontalmente */
+            }
+            .project-description {
+            max-width: 65%; /* Reduce aún más el ancho en pantallas muy pequeñas */
+            text-align: justify; /* Justifica el texto */
+            }
+            .images-container {
+            max-width: 65%; /* Reduce aún más el ancho en pantallas muy pequeñas */
+            grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+            }                     
+        }
+    </style>
+</head>
+<body>
+    <!-- Redes sociales -->
+    <div class="social-links">
+        <a href="https://www.instagram.com/esca_lab_" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/víctor-lópez-escalonilla/" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="about.html" rel="noopener noreferrer">
+            <i class="fas fa-user"></i>
+        </a>
+    </div>
+
+    <!-- Encabezado -->
+    <header>
+        <a href="https://vescal.github.io">
+            <h1>esca_lab</h1>
+        </a>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <!-- Título del Proyecto -->
+        <h2 class="project-title">stool mies van der rohe</h2>
+
+        <!-- Datos del Proyecto -->
+        <div class="project-info">
+            <p>     2017 | Toledo | Escuela de Arquitectura de Toledo 
+                    <br><br>
+                    Elementos de Composición 
+                    <br><br>
+                </p>
+        </div>
+
+        <!-- Descripción del proyecto -->
+        <div class="project-description">
+            <p>     Si nos remontamos a los primeros proyectos, el hilo conductor de buena parte de ellos consistía en un ejercicio de observación de los antiguos maestros. Esto no se limitaba a casas o construcciones como se suelen entender, sino también a la arquitectura inherente al mobiliario.  
+                    <br><br>
+                    Esta es una reproducción de un taburete que, si bien en el enunciado su autoría estaba atribuida a Mies Van der Rohe, hay muy pocos registros de que así fuera. Sin embargo, se pueden encontrar más resultados que lo sitúan como uno de los muebles o asientos en cantilever empleados por los alumnos de la Bauhaus, probablemente en su última etapa justo antes o ya recién mudados a la que sería su última sede en Berlín. 
+                    <br><br>
+                    Parte de una estructura hecha con tubo de hierro, con un voladizo curvado de manera que adquiere una forma de "Z". Dada la imposibilidad de hacerla de una sola pieza, creamos dos mitades que al soldarse nos dan como resultado el taburete. El asiento está fabricado en una sola pieza de cuero y que ofrece una buena resistencia al peso.  
+                    <br><br>
+            </p>
+        </div>
+
+        <!-- Contenedor de imágenes -->
+        <section>
+            <div class="images-container">
+                <!-- Imagen 1 -->
+                <div class="image-item">
+                    <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_1.jpg" alt="Taburete finalizado">
+                </div>
+
+                <!-- Imagen 2 -->
+                <div class="image-item">
+                    <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_2.jpg" alt="Mies sentazo en una silla en cantilever">
+                </div>
+
+                <!-- Imagen 3 -->
+                <div class="image-item">
+                    <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_3.jpg" alt="Modelo de referencia para el proyecto">
+                </div>
+
+                <!-- Imagen 4 -->
+                <div class="image-item">
+                    <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_4.jpg" alt="Vistas de la estructura">
+                </div>
+
+                 <!-- Imagen 5 -->
+                <div class="image-item">
+                    <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_5.jpg" alt="Perspectiva militar de la estructura">
+                </div>
+
+                 <!-- Imagen 6 -->
+                <div class="image-item">
+                    <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_6.jpg" alt="Curvado del hierro">
+                </div>
+
+                 <!-- Imagen 7 -->
+                <div class="image-item">
+                    <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_7.jpg" alt="Unión con soldadura de las distintas partes_1">
+                </div>
+
+                 <!-- Imagen 8 -->
+                <div class="image-item">
+                    <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_8.jpg" alt="Unión con soldadura de las distintas partes_2">
+                </div>
+
+                 <!-- Imagen 9 -->
+                <div class="image-item">
+                    <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_9.jpg" alt="Costura del asiento de cuero_1">
+                </div>
+
+                 <!-- Imagen 10 -->
+                <div class="image-item">
+                    <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_10.jpg" alt="Costura del asiento de cuero_2">
+                </div>
+
+                 <!-- Imagen 11 -->
+                <div class="image-item">
+                    <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_11.jpg" alt="Vista final_1">
+                </div>
+
+                 <!-- Imagen 12 -->
+                <div class="image-item">
+                    <img src="https://raw.githubusercontent.com/vescal/vescal.github.io/Pics/project 01_12.jpg" alt="Vista final_2">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer></footer>
+
+    <script>
+        // Esperamos a que la página cargue completamente
+        document.addEventListener('DOMContentLoaded', function() {
+            // Definimos las opciones del Intersection Observer
+            const observerOptions = {
+                root: null, // Usamos el viewport como referencia
+                rootMargin: '0px', // Sin margen adicional
+                threshold: 0.1 // El 50% del elemento debe estar visible para activar la animación
+            };
+
+            // Creamos una función callback que se ejecutará cuando los proyectos entren en el viewport
+            const fadeInProjects = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Si el proyecto entra en la vista, le agregamos la clase 'visible'
+                        entry.target.classList.add('visible');
+                    } else {
+                        // Si el proyecto sale de la vista, lo ocultamos de nuevo para el siguiente scroll
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            };
+
+            // Creamos el observer y le pasamos la función de callback y las opciones
+            const observer = new IntersectionObserver(fadeInProjects, observerOptions);
+
+            // Obtenemos todos los proyectos y comenzamos a observarlos
+            const projects = document.querySelectorAll('.project-title, .project-info, .project-description, .image-item');
+            projects.forEach(project => {
+                observer.observe(project);
+            });
+        });
+
+            // Función para abrir la vista previa de la imagen
+        document.addEventListener('DOMContentLoaded', function() {
+    const imageItems = document.querySelectorAll('.image-item img');
+    const imagePreview = document.getElementById('imagePreview');
+    const previewImg = document.getElementById('previewImg');
+    const closePreview = document.getElementById('closePreview');
+
+    let zoomLevel = 1;
+    let isDragging = false;
+    let startX, startY;
+    let offsetX = 0, offsetY = 0;
+
+    let lastClickTime = 0;
+    const doubleClickThreshold = 300; // Tiempo máximo entre clics para considerarlos rápidos (en milisegundos)
+
+    imageItems.forEach(item => {
+        item.addEventListener('click', function() {
+            imagePreview.style.display = 'flex';
+            previewImg.src = item.src;
+            zoomLevel = 1; // Resetear zoom
+            previewImg.style.transform = `scale(${zoomLevel}) translate(0, 0)`; // Resetear escala y desplazamiento
+            offsetX = 0;
+            offsetY = 0;
+            lastClickTime = 0; // Reiniciar tiempo al abrir una nueva imagen
+        });
+    });
+
+    closePreview.addEventListener('click', function() {
+        imagePreview.style.display = 'none';
+    });
+
+    imagePreview.addEventListener('click', function(event) {
+        if (event.target === imagePreview) {
+            imagePreview.style.display = 'none';
+        }
+    });
+
+    previewImg.addEventListener('click', function() {
+        const currentTime = new Date().getTime();
+
+        if (currentTime - lastClickTime < doubleClickThreshold) {
+            // Si el tiempo entre clics es menor al umbral, realizamos zoom out
+            zoomLevel = 1;
+        } else {
+            // Si el clic es normal, hacemos zoom in
+            zoomLevel = 2;
+        }
+
+        lastClickTime = currentTime; // Actualizamos el tiempo del último clic
+        previewImg.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`;
+
+        if (zoomLevel === 2) {
+        imagePreview.style.cursor = 'zoom-out';
+    } else {
+        imagePreview.style.cursor = 'crosshair';
+    }
+    });
+
+    previewImg.addEventListener('mousedown', function(e) {
+        if (zoomLevel === 2) {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            imagePreview.style.cursor = 'grabbing';
+        }
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        if (isDragging && zoomLevel === 2) {
+            const deltaX = e.clientX - startX;
+            const deltaY = e.clientY - startY;
+
+            offsetX += deltaX;
+            offsetY += deltaY;
+
+            previewImg.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`;
+
+            startX = e.clientX;
+            startY = e.clientY;
+        }
+    });
+
+    document.addEventListener('mouseup', function() {
+        isDragging = false;
+        imagePreview.style.cursor = 'crosshair';
+    });
+
+            // Para arrastrar con el dedo (solo en móvil)
+    previewImg.addEventListener('touchstart', function(e) {
+        if (zoomLevel === 2) {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            imagePreview.style.cursor = 'grabbing';
+        }
+    });
+
+    document.addEventListener('touchmove', function(e) {
+        if (isDragging && zoomLevel === 2) {
+            const deltaX = e.touches[0].clientX - startX;
+            const deltaY = e.touches[0].clientY - startY;
+
+            offsetX += deltaX;
+            offsetY += deltaY;
+
+            previewImg.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`;
+
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        }
+    });
+
+    document.addEventListener('touchend', function() {
+        isDragging = false;
+        imagePreview.style.cursor = 'grab';
+    });
+});
+
+
+
+    </script>
+
+    <!-- Contenedor de vista previa de la imagen -->
+<div id="imagePreview" class="image-preview">
+    <span id="closePreview" class="close">&times;</span>
+    <img id="previewImg" src="" alt="Vista previa">
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
