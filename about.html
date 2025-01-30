@@ -253,6 +253,15 @@
             .contact-info {
             text-align: center; 
             margin-top: 10px; /* Espacio entre la imagen y los enlaces */
+
+            opacity: 0; /* Inicialmente invisible */
+            transform: translateY(30px); /* Inicia desplazado hacia abajo */
+            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
+            }
+
+            .contact-info.visible {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a la posición original */
             }
 
             .contact-info a {
