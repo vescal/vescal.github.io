@@ -132,6 +132,10 @@
             margin-top: 10px; /* Espacio entre la imagen y los enlaces */
             color: #000000;
             font-weight: bold;
+
+            opacity: 0; /* Inicialmente invisible */
+            transform: translateY(30px); /* Inicia desplazado hacia abajo */
+            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
             }
 
             .contact-info a {
@@ -142,6 +146,11 @@
         
             .contact-info a:hover {
             color: #b00000;
+            }
+
+            .contact-info.visible {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a la posición original */
             }
         
         /* Carrusel */
@@ -313,8 +322,8 @@
         </section>
 
         <div class="contact-info">
-                <p>✉️ <a href="mailto:vescal.arq@gmail.com">vescal.arq@gmail.com</a></p>
-                <p>📄 <a href="ruta/al/cv.pdf" download>Curriculum Vitae</a></p>
+                <p><a href="mailto:vescal.arq@gmail.com">vescal.arq@gmail.com</a></p>
+                <p><a href="ruta/al/cv.pdf" download>Curriculum Vitae</a></p>
         </div>
         
         <!-- Carrusel de imágenes -->
