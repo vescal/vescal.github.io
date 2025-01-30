@@ -126,6 +126,27 @@
             font-size: 1rem;
         }
 
+        /* Contacto */
+        .contact-info {
+            text-align: center; 
+            margin-top: 10px; /* Espacio entre la imagen y los enlaces */
+            color: #000000;
+            font-weight: bold;
+
+            opacity: 0; /* Inicialmente invisible */
+            transform: translateY(30px); /* Inicia desplazado hacia abajo */
+            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
+            }
+
+            .contact-info.visible {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a la posición original */
+            }
+
+            .contact-info a:hover {
+            color: #b00000;
+            }
+        
         /* Carrusel */
         .carousel {
             position: relative;
@@ -250,29 +271,6 @@
             height: 100%; /* Mantiene la proporción de las imágenes */
             }
         }
-            .contact-info {
-            text-align: center; 
-            margin-top: 10px; /* Espacio entre la imagen y los enlaces */
-
-            opacity: 0; /* Inicialmente invisible */
-            transform: translateY(30px); /* Inicia desplazado hacia abajo */
-            transition: opacity 1s ease, transform 1s ease; /* Transición suave */
-            }
-
-            .contact-info.visible {
-            opacity: 1;
-            transform: translateY(0); /* Vuelve a la posición original */
-            }
-
-            .contact-info a {
-            text-decoration: none;
-            color: #b00000;
-            font-weight: bold;
-            }
-
-            .contact-info a:hover {
-            color: #000000;
-            }
     </style>
 </head>
 <body>
